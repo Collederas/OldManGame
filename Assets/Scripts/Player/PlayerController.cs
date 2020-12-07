@@ -7,7 +7,7 @@ public class PlayerController : MovingObjectController
 {
     [Range(0.0f, 5.0f)]
     public float boostDuration = 1f;
-    [Range(0.0f, 5.0f)]
+    [Range(0.0f, 10.0f)]
     public float boostDistance = 5f;
     public float maxBoostingSpeed = 15f;
     public float maxWalkingSpeed = 2f;
