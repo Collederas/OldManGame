@@ -218,10 +218,10 @@ GameObject:
   - component: {fileID: 969694824}
   - component: {fileID: 969694822}
   - component: {fileID: 969694817}
-  - component: {fileID: 969694823}
+  - component: {fileID: 969694821}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,19 +336,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3013921, y: 1.4538269}
   m_EdgeRadius: 0
---- !u!114 &969694822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969694816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a11e5dfb3bdfe4400b44c0b61833b0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &969694823
+--- !u!114 &969694821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -373,20 +361,24 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8b59cf88-d5a5-4c5f-83b0-ef17cea024a9
-    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 51b6be3b-b719-4d9e-9dae-385047213708
-    m_ActionName: Player/Fire
+  m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &969694822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969694816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11e5dfb3bdfe4400b44c0b61833b0e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &969694824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,4 +391,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f15c7e1a73e5431bbace70490f286e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
+  boostDuration: 0.6
+  maxBoostingSpeed: 10
+  maxWalkingSpeed: 2

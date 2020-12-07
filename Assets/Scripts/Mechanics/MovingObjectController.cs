@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MovingObjectController : MonoBehaviour
 {
-    public float maxSpeed = 10;
     public Vector2 Velocity { get; set; }
-    protected Vector2 acceleration;
+    public Vector2 Impulse { get; set; }
+    protected float maxSpeed = 2f;
 
     void Start()
     {
+        Impulse = Vector2.zero;
     }
 
     protected virtual void CalcVelocity()
     {
-        Velocity = acceleration * maxSpeed;
         Velocity = Vector2.ClampMagnitude(Velocity, maxSpeed);
     }
 
@@ -26,13 +26,11 @@ public class MovingObjectController : MonoBehaviour
 
     protected virtual void Update()
     {           
-        /* In CalcVelocity switch between states and calculate velocity based 
-        on the active one. */
         CalcVelocity();
     }
 
-    void FixedUpdate()
-    {   
+    protected virtual void FixedUpdate()
+    {
         var delta = Velocity * Time.deltaTime;
         PerformMovement(delta);
     }
