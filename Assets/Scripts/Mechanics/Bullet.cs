@@ -6,27 +6,20 @@ public class Bullet : MonoBehaviour
 {
     public Vector2 Target { get; set;}
     public float Speed { get; set; } = 2;
-
-    private bool bHit;
-    private Vector2 debug_StartPos;
+    private Vector2 startPosition;
 
     void Start()
     {
-        bHit = false;
-        debug_StartPos = transform.position;
+        startPosition = transform.position;
     }
 
-    void OnCollisionEnter()
+    void OnTriggerEnter2D()
     {
-        bHit = true;
+        Destroy(gameObject);
     }
 
     void Update()
     {
-        if (!bHit){
-            transform.Translate((Target - new Vector2(debug_StartPos.x, debug_StartPos.y)).normalized * Speed * Time.deltaTime);
-        } else {
-            Destroy(this);
-        }
+        transform.Translate((Target - new Vector2(startPosition.x, startPosition.y)).normalized * Speed * Time.deltaTime);
     }
 }
