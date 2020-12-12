@@ -10,7 +10,7 @@ public class BullyFallState : BullyBaseState
     public override void Enter()
     {
         elapsedTime = 0f;
-        Debug.Log("Start Fall");
+        Debug.Log("Start Fall Bully");
     }
 
     public override void Update()

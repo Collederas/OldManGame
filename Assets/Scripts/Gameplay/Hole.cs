@@ -6,7 +6,8 @@ public class Hole : MonoBehaviour
 {
     void OnTriggerStay2D(Collider2D other)
     {
-        MovingObjectController otherController = other.GetComponent<MovingObjectController>();
+        print("Contact with " + other);
+        MovingObjectController otherController = other.GetComponentInParent<MovingObjectController>();
         if (otherController != null && otherController is IGrounded)
         {
             otherController.FallTargetPosition = transform.position;

@@ -50,6 +50,7 @@ public class PlayerController : MovingObjectController
 
     public override void Fall()
     {
+        print("called fall");
         if (!(currentState is PlayerBoostState))
             ChangeState(fallState);
     }
