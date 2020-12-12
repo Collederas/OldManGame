@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hole : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         MovingObjectController otherController = other.GetComponent<MovingObjectController>();
         if (otherController != null && otherController is IGrounded)
