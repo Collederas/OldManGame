@@ -41,7 +41,7 @@ public class BullyAttackState : BullyBaseState
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+
     }
 
     // IEnumerator ResetCanShoot()

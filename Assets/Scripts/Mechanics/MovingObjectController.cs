@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class MovingObjectController : MonoBehaviour
+public abstract class MovingObjectController : MonoBehaviour, IGrounded
 {
     public Vector2 Velocity { get; set; }
     public Vector2 Impulse { get; set; }
+
+    // Where the fall animation should be aiming to.
+    public Vector2 FallTargetPosition { get; set; }
+
     public float maxSpeed = 2f;
 
     protected void PerformMovement(Vector2 delta)
@@ -23,5 +27,10 @@ public abstract class MovingObjectController : MonoBehaviour
     {
         var delta = Velocity * Time.deltaTime;
         PerformMovement(delta);
+    }
+
+    public virtual void Fall()
+    {
+
     }
 }
