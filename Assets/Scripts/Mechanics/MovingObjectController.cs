@@ -2,21 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovingObjectController : MonoBehaviour
+public abstract class MovingObjectController : MonoBehaviour
 {
     public Vector2 Velocity { get; set; }
     public Vector2 Impulse { get; set; }
-    protected float maxSpeed = 2f;
-
-    void Start()
-    {
-        Impulse = Vector2.zero;
-    }
-
-    protected virtual void CalcVelocity()
-    {
-        Velocity = Vector2.ClampMagnitude(Velocity, maxSpeed);
-    }
+    public float maxSpeed = 2f;
 
     protected void PerformMovement(Vector2 delta)
     { 
@@ -25,8 +15,8 @@ public class MovingObjectController : MonoBehaviour
     }
 
     protected virtual void Update()
-    {           
-        CalcVelocity();
+    {
+        Velocity = Vector2.ClampMagnitude(Velocity, maxSpeed);
     }
 
     protected virtual void FixedUpdate()
