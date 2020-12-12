@@ -25,7 +25,13 @@ public class PlayerWalkingState : PlayerBaseState
         player.Velocity = inputAcceleration;
     }
 
+    public override void FixedUpdate()
+    {
+
+    }
+
     public override void Exit()
     {
+
     }
 }

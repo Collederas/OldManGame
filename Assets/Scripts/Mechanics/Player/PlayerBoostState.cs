@@ -22,7 +22,6 @@ public class PlayerBoostState : PlayerBaseState
     public override void OnFire()
     {
     }
-
     public override void Update()
     {
         var boostDistance = player.boostDistance;
@@ -35,6 +34,10 @@ public class PlayerBoostState : PlayerBaseState
         else {
             player.ChangeState(player.walkingState);
         }
+    }
+    public override void FixedUpdate()
+    {
+
     }
 
     public override void Exit()

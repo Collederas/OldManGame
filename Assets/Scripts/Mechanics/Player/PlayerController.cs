@@ -8,6 +8,7 @@ public class PlayerController : MovingObjectController
     public PlayerBaseState currentState;
     public PlayerWalkingState walkingState;
     public PlayerBoostState boostState;
+    public PlayerFallState fallState;
 
 
     [Range(0.0f, 5.0f)]
@@ -16,6 +17,7 @@ public class PlayerController : MovingObjectController
     public float boostDistance = 5f;
     public float maxBoostingSpeed = 15f;
     public float maxWalkingSpeed = 2f;
+    public float fallingSpeed = 2f;
 
     private Vector2 inputAcceleration;
     private Vector2 impulseAcceleration;
@@ -25,6 +27,7 @@ public class PlayerController : MovingObjectController
         maxSpeed = maxWalkingSpeed;
         walkingState = new PlayerWalkingState(this);
         boostState = new PlayerBoostState(this);
+        fallState = new PlayerFallState(this);
         currentState = walkingState;
     }
     
@@ -45,9 +48,20 @@ public class PlayerController : MovingObjectController
         currentState.OnFire();
     }
 
+    public override void Fall()
+    {
+        ChangeState(fallState);
+    }
+
     protected override void Update()
     {
         currentState.Update();
         base.Update();
+    }
+
+    protected override void FixedUpdate()
+    {
+        currentState.FixedUpdate();
+        base.FixedUpdate();
     }
 }
