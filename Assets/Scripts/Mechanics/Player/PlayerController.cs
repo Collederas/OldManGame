@@ -50,7 +50,8 @@ public class PlayerController : MovingObjectController
 
     public override void Fall()
     {
-        ChangeState(fallState);
+        if (!(currentState is PlayerBoostState))
+            ChangeState(fallState);
     }
 
     protected override void Update()
