@@ -26,12 +26,13 @@ public class PlayerFallState : PlayerBaseState
 
     public override void FixedUpdate()
     {
-        if (elapsedTime < 2f)
+        if (elapsedTime < 0.8f)
         {
             player.transform.localScale = Vector2.Lerp(player.transform.localScale, Vector2.zero, player.fallingSpeed * Time.fixedDeltaTime);
             player.transform.position = Vector2.Lerp(player.transform.position, player.FallTargetPosition, player.fallingSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.fixedDeltaTime;
         } else {
+            player.healthBar.SetHealth(0);
             player.Die();
         }
     }

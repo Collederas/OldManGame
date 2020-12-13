@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public Vector2 Target { get; set;}
     public float Speed { get; set; } = 2;
+    public int damage = 1;
     private Vector2 startPosition;
 
     void Start()
@@ -13,8 +14,9 @@ public class Bullet : MonoBehaviour
         startPosition = transform.position;
     }
 
-    void OnTriggerEnter2D()
+    void OnTriggerEnter2D(Collider2D other)
     {
+        other.SendMessage("TakeDamage", damage);
         Destroy(gameObject);
     }
 

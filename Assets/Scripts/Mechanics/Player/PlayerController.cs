@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MovingObjectController, IKillable
+[RequireComponent(typeof(HealthBar))]
+public class PlayerController : MovingObjectController, IDamageable, IKillable
 {   
     public PlayerBaseState currentState;
     public PlayerWalkingState walkingState;
     public PlayerBoostState boostState;
     public PlayerFallState fallState;
+
+
+    public int maxHealth = 4;
+    public HealthBar healthBar;
+
+    protected int currentHealth;
 
 
     [Range(0.0f, 5.0f)]
@@ -21,9 +28,13 @@ public class PlayerController : MovingObjectController, IKillable
 
     private Vector2 inputAcceleration;
     private Vector2 impulseAcceleration;
+    private bool bUpdateHealthBar;
 
     public void Start()
-    {
+    {   
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
         maxSpeed = maxWalkingSpeed;
         walkingState = new PlayerWalkingState(this);
         boostState = new PlayerBoostState(this);
@@ -48,9 +59,20 @@ public class PlayerController : MovingObjectController, IKillable
         currentState.OnFire();
     }
 
+    public void UpdateHealthBar()
+    {
+        healthBar.SetHealth(currentHealth);
+        bUpdateHealthBar = false;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        currentHealth -= damageAmount;
+        bUpdateHealthBar = true;
+    }
+
     public override void Fall()
     {
-        print("called fall");
         if (!(currentState is PlayerBoostState))
             ChangeState(fallState);
     }
@@ -58,6 +80,10 @@ public class PlayerController : MovingObjectController, IKillable
     protected override void Update()
     {
         currentState.Update();
+        if (bUpdateHealthBar)
+            UpdateHealthBar();
+        if(currentHealth <= 0)
+            Die();
         base.Update();
     }
 
