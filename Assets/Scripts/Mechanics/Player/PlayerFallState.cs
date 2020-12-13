@@ -32,8 +32,7 @@ public class PlayerFallState : PlayerBaseState
             player.transform.position = Vector2.Lerp(player.transform.position, player.FallTargetPosition, player.fallingSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.fixedDeltaTime;
         } else {
-            Debug.Log("Dead xx!");
-            player.ChangeState(player.walkingState);
+            player.Die();
         }
     }
 

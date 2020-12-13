@@ -26,8 +26,7 @@ public class BullyFallState : BullyBaseState
             enemy.transform.position = Vector2.Lerp(enemy.transform.position, enemy.FallTargetPosition, enemy.fallingSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.fixedDeltaTime;
         } else {
-            Debug.Log("Dead xx!");
-            enemy.ChangeState(enemy.idle);
+            enemy.Die();
         }
     }
 

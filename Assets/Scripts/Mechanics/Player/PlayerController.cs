@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MovingObjectController
+public class PlayerController : MovingObjectController, IKillable
 {   
     public PlayerBaseState currentState;
     public PlayerWalkingState walkingState;
@@ -65,5 +65,10 @@ public class PlayerController : MovingObjectController
     {
         currentState.FixedUpdate();
         base.FixedUpdate();
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -2943,6 +2943,11 @@ PrefabInstance:
       propertyPath: shootingSpeed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 6658316319524080073, guid: 791bd48a20ad04778ab5ab96aa147e44,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791bd48a20ad04778ab5ab96aa147e44, type: 3}
 --- !u!1001 &7269023911684581623
@@ -2952,6 +2957,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5499577307539851826, guid: d7134c909ab6b44a1af0876db767b801,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5889689138053126583, guid: d7134c909ab6b44a1af0876db767b801,
         type: 3}
       propertyPath: m_BodyType

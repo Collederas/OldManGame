@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BullyEnemyController : MovingObjectController
+public class BullyEnemyController : MovingObjectController, IKillable
 {
     public BullyAttackState attack;
     public BullyIdleState idle;
@@ -38,5 +38,10 @@ public class BullyEnemyController : MovingObjectController
         currentState.Exit();
         currentState = newState;
         newState.Enter();
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
