@@ -26,12 +26,16 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     public float maxWalkingSpeed = 2f;
     public float fallingSpeed = 2f;
 
+    [HideInInspector]
+    public int defaultLayer;
+
     private Vector2 inputAcceleration;
     private Vector2 impulseAcceleration;
     private bool bUpdateHealthBar;
 
     public void Start()
     {   
+        defaultLayer = LayerMask.NameToLayer("Default");
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 

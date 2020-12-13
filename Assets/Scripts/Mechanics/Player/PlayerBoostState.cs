@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 public class PlayerBoostState : PlayerBaseState
 {
     float elapsedTime;
-    Collider2D playerCollider;
 
     public PlayerBoostState(PlayerController player) : base(player){}
 
@@ -14,8 +13,7 @@ public class PlayerBoostState : PlayerBaseState
     {
         elapsedTime = 0f;
         player.maxSpeed = player.maxBoostingSpeed;
-        playerCollider = player.GetComponent<Collider2D>();
-        // playerCollider.enabled = false;
+        player.gameObject.layer = LayerMask.NameToLayer("Invincible");
     }
 
     public override void OnMove(InputValue value)
@@ -47,6 +45,6 @@ public class PlayerBoostState : PlayerBaseState
     {
         player.Velocity = Vector2.zero;
         player.maxSpeed = player.maxWalkingSpeed;
-        // playerCollider.enabled = true;
+        player.gameObject.layer = player.defaultLayer;
     }
 }

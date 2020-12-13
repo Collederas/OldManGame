@@ -10,7 +10,8 @@ public class PlayerFallState : PlayerBaseState
     {
         elapsedTime = 0f;
         player.Velocity = Vector2.zero;
-        Debug.Log("Start to fall");
+        player.gameObject.layer = LayerMask.NameToLayer("Invincible");
+        player.healthBar.SetHealth(0);
     }
     public override void OnMove(InputValue value)
     {
@@ -32,8 +33,8 @@ public class PlayerFallState : PlayerBaseState
             player.transform.position = Vector2.Lerp(player.transform.position, player.FallTargetPosition, player.fallingSpeed * Time.fixedDeltaTime);
             elapsedTime += Time.fixedDeltaTime;
         } else {
-            player.healthBar.SetHealth(0);
             player.Die();
+            player.gameObject.layer = player.defaultLayer;
         }
     }
 
