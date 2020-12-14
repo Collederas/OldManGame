@@ -6,14 +6,14 @@ public class BullyAttackState : BullyBaseState
 {
     public bool bCanShoot;
     private float elapsedTime;
-    public GameObject player;
+    GameManager gameManager;
 
     public BullyAttackState(BullyEnemyController enemy) : base(enemy) { }
 
     public override void Enter()
     {
         elapsedTime = 0f;
-        player = GameObject.FindGameObjectWithTag("Player");
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     public override void Update()
@@ -22,7 +22,7 @@ public class BullyAttackState : BullyBaseState
     }
     public override void FixedUpdate()
     {
-        if (player)
+        if (gameManager.PlayerInstance)
         {
             if (elapsedTime > enemy.shootingInterval)
             {
@@ -31,7 +31,7 @@ public class BullyAttackState : BullyBaseState
                     new Vector3(enemy.transform.position.x, enemy.transform.position.y, 0),
                     Quaternion.identity
                 );
-                obj.Target = player.transform.position;
+                obj.Target = gameManager.PlayerInstance.transform.position;
                 obj.Speed = enemy.shootingSpeed;
                 elapsedTime = 0f;
             }
@@ -39,7 +39,11 @@ public class BullyAttackState : BullyBaseState
             {
                 elapsedTime += Time.fixedDeltaTime;
             }
-        }
+        } 
+        else
+        {
+            enemy.ChangeState(enemy.idle);
+        } 
     }
 
     public override void Exit()
