@@ -24,7 +24,7 @@ public class BullyEnemyController : MovingObjectController, IKillable
         attack = new BullyAttackState(this);
         fall = new BullyFallState(this);
 
-        currentState = attack;
+        currentState = idle;
         currentState.Enter();
     }
 
