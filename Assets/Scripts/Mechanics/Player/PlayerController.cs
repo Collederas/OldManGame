@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,6 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(HealthBar))]
 public class PlayerController : MovingObjectController, IDamageable, IKillable
 {   
+    public Action UpdateHealth;
     public PlayerBaseState currentState;
     public PlayerWalkingState walkingState;
     public PlayerBoostState boostState;
@@ -13,9 +15,20 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
 
     public int maxHealth = 4;
-    public HealthBar healthBar;
 
-    protected int currentHealth;
+    private int currentHealth;
+    public int CurrentHealth 
+    { 
+        get { return currentHealth; } 
+        set 
+        {
+            currentHealth = value;
+            if (UpdateHealth != null)
+            {   
+                UpdateHealth();
+            }
+        }
+    }
 
 
     [Range(0.0f, 5.0f)]
@@ -31,13 +44,11 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
     private Vector2 inputAcceleration;
     private Vector2 impulseAcceleration;
-    private bool bUpdateHealthBar;
 
     public void Start()
     {   
         defaultLayer = LayerMask.NameToLayer("Default");
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        CurrentHealth = maxHealth;
 
         maxSpeed = maxWalkingSpeed;
         walkingState = new PlayerWalkingState(this);
@@ -63,16 +74,9 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         currentState.OnFire();
     }
 
-    public void UpdateHealthBar()
-    {
-        healthBar.SetHealth(currentHealth);
-        bUpdateHealthBar = false;
-    }
-
     public void TakeDamage(int damageAmount)
     {
-        currentHealth -= damageAmount;
-        bUpdateHealthBar = true;
+        CurrentHealth -= damageAmount;
     }
 
     public override void Fall()
@@ -84,10 +88,10 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     protected override void Update()
     {
         currentState.Update();
-        if (bUpdateHealthBar)
-            UpdateHealthBar();
-        if(currentHealth <= 0)
+        if(CurrentHealth <= 0)
+        {
             Die();
+        }
         base.Update();
     }
 

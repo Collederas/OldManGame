@@ -13,8 +13,13 @@ public class BullyEnemyController : MovingObjectController, IKillable
     public float fallingSpeed = 2f;
 
     protected BullyBaseState currentState;
+
+    GameManager gameManager;
     protected void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
+        gameManager.PlayerSpawned += OnPlayerSpawned;
+
         idle = new BullyIdleState(this);
         attack = new BullyAttackState(this);
         fall = new BullyFallState(this);
@@ -27,6 +32,12 @@ public class BullyEnemyController : MovingObjectController, IKillable
     {
         ChangeState(fall);
     }
+
+    void OnPlayerSpawned()
+    {
+        ChangeState(attack);
+    }
+
     protected override void FixedUpdate()
     {
         currentState.FixedUpdate();
