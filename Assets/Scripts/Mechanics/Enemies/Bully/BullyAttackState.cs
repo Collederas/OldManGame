@@ -7,13 +7,17 @@ public class BullyAttackState : BullyBaseState
     public bool bCanShoot;
     private float elapsedTime;
     GameManager gameManager;
+    GameObject target;
 
-    public BullyAttackState(BullyEnemyController enemy) : base(enemy) { }
+    public BullyAttackState(BullyController enemy) : base(enemy) {}
+
 
     public override void Enter()
     {
         elapsedTime = 0f;
-        gameManager = GameObject.FindObjectOfType<GameManager>();
+        target = bully.gameManager.GetPlayer().gameObject;
+        if (target == null)
+            bully.ChangeState(bully.idleState);
     }
 
     public override void Update()
@@ -21,29 +25,28 @@ public class BullyAttackState : BullyBaseState
 
     }
     public override void FixedUpdate()
-    {
-        if (gameManager.PlayerInstance)
+    {   
+        if (target) 
         {
-            if (elapsedTime > enemy.shootingInterval)
-            {
-                var obj = GameObject.Instantiate(
-                    enemy.bullet,
-                    new Vector3(enemy.transform.position.x, enemy.transform.position.y, 0),
-                    Quaternion.identity
-                );
-                obj.Target = gameManager.PlayerInstance.transform.position;
-                obj.Speed = enemy.shootingSpeed;
-                elapsedTime = 0f;
-            }
-            else
-            {
-                elapsedTime += Time.fixedDeltaTime;
-            }
-        } 
+        if (elapsedTime > bully.shootingInterval)
+        {
+            var obj = GameObject.Instantiate(
+                bully.bullet,
+                new Vector3(bully.transform.position.x, bully.transform.position.y, 0),
+                Quaternion.identity
+            );
+            obj.Target = target.transform.position;
+            obj.Speed = bully.shootingSpeed;
+            elapsedTime = 0f;
+        }
         else
         {
-            enemy.ChangeState(enemy.idle);
-        } 
+            elapsedTime += Time.fixedDeltaTime;
+        }
+        } else 
+        {
+            bully.ChangeState(bully.idleState);
+        }
     }
 
     public override void Exit()

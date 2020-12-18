@@ -25,6 +25,10 @@ public class PlayerBoostState : PlayerBaseState
     }
     public override void Update()
     {
+
+    }
+    public override void FixedUpdate()
+    {
         var boostDistance = player.boostDistance;
         var boostDuration = player.boostDuration;
 
@@ -35,10 +39,6 @@ public class PlayerBoostState : PlayerBaseState
         else {
             player.ChangeState(player.walkingState);
         }
-    }
-    public override void FixedUpdate()
-    {
-
     }
 
     public override void Exit()

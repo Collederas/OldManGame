@@ -400,6 +400,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -415,6 +416,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33c2667deef2b4077b202a8e92f5a771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smoothing: 0.5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -450,7 +464,7 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 0
+  m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
@@ -770,8 +784,10 @@ MonoBehaviour:
       m_Action: Spawn Player
       m_Flags: 0
   player: {fileID: 7269023912058156703, guid: d7134c909ab6b44a1af0876db767b801, type: 3}
-  healthBar: {fileID: 464649202}
-  spawnPoint: {fileID: 1863351456}
+  mainCamera: {fileID: 519420031}
+  playerSpawnPoint: {fileID: 1863351456}
+  levels:
+  - {fileID: 11400000, guid: bb729e5257aeb4bc89eb7b2145752b39, type: 2}
 --- !u!114 &856155263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3646,6 +3662,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7537880822705737429, guid: 8a85b74eafb4c4be7b238e8a6a5a2b19,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7537880822705737431, guid: 8a85b74eafb4c4be7b238e8a6a5a2b19,
         type: 3}
       propertyPath: m_Name

@@ -18,11 +18,13 @@ public class PlayerHUD : MonoBehaviour
     void OnPlayerSpawned()
     {
         if (gameManager)
-            gameManager.PlayerInstance.UpdateHealth += UpdateHealthBar;
+        {
+            gameManager.GetPlayer().UpdateHealth += UpdateHealthBar;
+        }
     }
 
     public void UpdateHealthBar()
     {
-        healthBar.SetHealth(gameManager.PlayerInstance.CurrentHealth);
+        healthBar.SetHealth(gameManager.GetPlayer().CurrentHealth);
     }
 }

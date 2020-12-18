@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BullyIdleState : BullyBaseState
 {
-    public BullyIdleState(BullyEnemyController enemy) : base(enemy) { }
+    public BullyIdleState(BullyController enemy) : base(enemy) { }
 
     public override void Enter()
     {
@@ -25,6 +25,4 @@ public class BullyIdleState : BullyBaseState
     {
 
     }
-
-
 }

@@ -8,19 +8,17 @@ public class GameManager : MonoBehaviour
     public event Action PlayerSpawned;
     public InputAction spawnPlayer;
     public PlayerController player;
-    public PlayerController PlayerInstance { get; set; }
+    private PlayerController PlayerInstance;
 
-    public HealthBar healthBar;
-    public GameObject spawnPoint;
+    public Camera mainCamera;
 
-
-    void Awake()
-    {
-        spawnPlayer.performed += OnPlayerSpawn;
-    }
+    public GameObject playerSpawnPoint;
+    public Level[] levels;
+    
 
     void Start()
     {
+        spawnPlayer.performed += OnSpawnPlayer;
         SpawnPlayer();
     }
 
@@ -29,14 +27,33 @@ public class GameManager : MonoBehaviour
         spawnPlayer.Enable();
     }
 
-    void OnPlayerSpawn(InputAction.CallbackContext context)
+    void OnSpawnPlayer(InputAction.CallbackContext context)
     {
         SpawnPlayer();
     }
     public void SpawnPlayer()
     {
-        PlayerInstance = Instantiate(player, new Vector2(spawnPoint.transform.position.x, spawnPoint.transform.position.y), Quaternion.identity);
+        if (player == null)
+        {
+            Debug.LogWarning("GameManager script is missing a Player object reference. Please define it in the Inspector.");
+            return;
+        }
+        PlayerInstance = Instantiate(player, new Vector2(playerSpawnPoint.transform.position.x, playerSpawnPoint.transform.position.y), Quaternion.identity);
         if (PlayerSpawned != null)
             PlayerSpawned();
+    }
+
+    public PlayerController GetPlayer()
+    {
+        if (PlayerInstance)
+            return PlayerInstance;
+
+        Debug.LogWarning("No player!");
+        return PlayerInstance;
+    }
+
+    public Level GetCurrentLevel()
+    {
+        return levels[0];
     }
 }

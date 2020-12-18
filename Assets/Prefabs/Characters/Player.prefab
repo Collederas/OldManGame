@@ -282,9 +282,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2
+  healthBar: {fileID: 0}
   maxHealth: 4
-  boostDuration: 0.2
-  boostDistance: 5
+  boostDuration: 0.1
+  boostDistance: 2
   maxBoostingSpeed: 20
   maxWalkingSpeed: 2
   fallingSpeed: 2
@@ -363,4 +364,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485cbb1f62f43404f9f75b2a67f35214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}

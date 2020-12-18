@@ -1,16 +1,9 @@
-﻿using UnityEngine;
-
-public abstract class BullyBaseState
+﻿public abstract class BullyBaseState : EnemyBaseState
 {
-    protected BullyEnemyController enemy;
+    protected BullyController bully;
 
-    public BullyBaseState(BullyEnemyController enemy)
+    public BullyBaseState(BullyController enemy)
     {
-        this.enemy = enemy;
+        this.bully = enemy;
     }
-
-    public abstract void Enter();
-    public abstract void Update();
-    public abstract void FixedUpdate();
-    public abstract void Exit();
 }
