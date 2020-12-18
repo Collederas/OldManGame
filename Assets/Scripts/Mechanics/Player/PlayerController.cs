@@ -13,7 +13,6 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     public PlayerBoostState boostState;
     public PlayerFallState fallState;
 
-
     public int maxHealth = 4;
 
     private int currentHealth;
@@ -34,7 +33,7 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     [Range(0.0f, 5.0f)]
     public float boostDuration = 1f;
     [Range(0.0f, 10.0f)]
-    public float boostDistance = 5f;
+    public float boostDistance = 2f;
     public float maxBoostingSpeed = 15f;
     public float maxWalkingSpeed = 2f;
     public float fallingSpeed = 2f;
