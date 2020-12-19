@@ -22,8 +22,9 @@ public class LevelMaster: ScriptableObject
         {
             currentLevelIndex = index;
             levels[index].scene.LoadSceneAsync().Completed += LevelLoadComplete;
+            return;
         }
-        else currentLevelIndex = 1;
+        Debug.LogWarning("Attempted to load level (index: %d) which doesn't exist.");
     }
 
     public void NextLevel()
