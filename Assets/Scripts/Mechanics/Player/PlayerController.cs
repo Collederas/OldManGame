@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(HealthBar))]
 public class PlayerController : MovingObjectController, IDamageable, IKillable
 {   
-    public Action UpdateHealth;
+    public Action updateHealth;
     public PlayerBaseState currentState;
     public PlayerWalkingState walkingState;
     public PlayerBoostState boostState;
@@ -15,17 +13,14 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
     public int maxHealth = 4;
 
-    private int currentHealth;
+    private int _currentHealth;
     public int CurrentHealth 
     { 
-        get { return currentHealth; } 
+        get => _currentHealth;
         set 
         {
-            currentHealth = value;
-            if (UpdateHealth != null)
-            {   
-                UpdateHealth();
-            }
+            _currentHealth = value;
+            updateHealth?.Invoke();
         }
     }
 
@@ -41,8 +36,8 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     [HideInInspector]
     public int defaultLayer;
 
-    private Vector2 inputAcceleration;
-    private Vector2 impulseAcceleration;
+    private Vector2 _inputAcceleration;
+    private Vector2 _impulseAcceleration;
 
     public void Start()
     {   
@@ -65,7 +60,7 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
     public void OnMove(InputValue value)
     {
-        currentState.OnMove(value);
+        currentState?.OnMove(value);
     }
 
     public void OnFire()
