@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
+using UnityEngine.AddressableAssets;
 
-[CreateAssetMenu(fileName = "Level", menuName = "ScriptableObjects/Level", order = 1)]
+[CreateAssetMenu(fileName = "Level", menuName = "Levels/Level", order = 1)]
 public class Level : ScriptableObject
 {
     public Vector2 levelSize;
+    public AssetReference scene;
 }

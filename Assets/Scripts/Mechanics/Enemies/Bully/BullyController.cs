@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class BullyController : EnemyStateMachineController, IKillable
+﻿public class BullyController : EnemyStateMachineController, IKillable
 {
     public BullyAttackState attackState;
     public BullyIdleState idleState;
@@ -10,10 +6,14 @@ public class BullyController : EnemyStateMachineController, IKillable
     public float shootingInterval = 2f;
     public float shootingSpeed = 8f;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        gameManager.PlayerSpawned += OnPlayerSpawned;
+    }
 
     protected override void Start()
     {
-        gameManager.PlayerSpawned += OnPlayerSpawned;
         idleState = new BullyIdleState(this);
         attackState = new BullyAttackState(this);
 
@@ -21,7 +21,7 @@ public class BullyController : EnemyStateMachineController, IKillable
         base.Start();
     }
 
-    protected void OnPlayerSpawned()
+    private void OnPlayerSpawned()
     {
         ChangeState(attackState);
     }

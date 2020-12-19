@@ -7,6 +7,7 @@ public class BullyAttackState : BullyBaseState
     public bool bCanShoot;
     private float elapsedTime;
     GameManager gameManager;
+    
     GameObject target;
 
     public BullyAttackState(BullyController enemy) : base(enemy) {}
