@@ -9,37 +9,39 @@ public class LevelMaster: ScriptableObject
 {
     public List<Level> levels = new List<Level>();
     public int currentLevelIndex = 0;
+    private static readonly int Start = Animator.StringToHash("Start");
     public event Action<Level> LevelLoaded;
-
+    
     public Level GetCurrentLevel()
     {
         return levels[currentLevelIndex];
     }
-    public void LoadLevelWithIndex(int index)
+    public void LoadLevelWithIndex(int index, Animator transition)
     {
         
         if (index <= levels.Count - 1)
         {
             currentLevelIndex = index;
             levels[index].scene.LoadSceneAsync().Completed += LevelLoadComplete;
+            transition.SetTrigger(Start);
             return;
         }
-        Debug.LogWarning("Attempted to load level (index: %d) which doesn't exist.");
+        Debug.LogWarning("Attempted to load level (index: " + index + ") which doesn't exist.");
     }
 
-    public void NextLevel()
+    public void NextLevel(Animator transition)
     {            
-        LoadLevelWithIndex(currentLevelIndex + 1);
+        LoadLevelWithIndex(currentLevelIndex + 1, transition);
     }
 
-    public void RestartLevel()
+    public void RestartLevel(Animator transition)
     {
-        LoadLevelWithIndex(currentLevelIndex);
+        LoadLevelWithIndex(currentLevelIndex, transition);
     }
 
-    public void NewGame()
+    public void NewGame(Animator transition)
     {
-        LoadLevelWithIndex(1);
+        LoadLevelWithIndex(1, transition);
     }
 
     private void LevelLoadComplete(AsyncOperationHandle<SceneInstance> sceneInstance)

@@ -7,14 +7,15 @@ public class GameManager : MonoBehaviour
     public event Action PlayerSpawned;
     public InputAction spawnPlayer;
     public PlayerController player;
-    public GameObject playerSpawnPoint;
     public LevelMaster levelMaster;
 
     private PlayerController _playerInstance;
-    
+    private GameObject _playerStart;
+
     private void Awake()
     {        
         DontDestroyOnLoad(gameObject);
+        _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
         levelMaster.LevelLoaded += InitializeLevel;
     }
 
@@ -31,7 +32,9 @@ public class GameManager : MonoBehaviour
 
     private void InitializeLevel(Level level)
     {
-        if (playerSpawnPoint == null)
+        _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
+
+        if (_playerStart == null)
         {
             Debug.LogWarning("No Player Spawn Point defined. Creating default at (0;0)");
             MakeSpawnPoint();
@@ -48,8 +51,8 @@ public class GameManager : MonoBehaviour
 
     private void MakeSpawnPoint()
     {
-        playerSpawnPoint = new GameObject();
-        playerSpawnPoint.transform.position = Vector2.zero;
+        _playerStart = new GameObject();
+        _playerStart.transform.position = Vector2.zero;
     }
     private void SpawnPlayer()
     {
@@ -61,7 +64,7 @@ public class GameManager : MonoBehaviour
 
         if (_playerInstance == null )
         {
-            var spawnPointPosition = playerSpawnPoint.transform.position;
+            var spawnPointPosition = _playerStart.transform.position;
             _playerInstance = Instantiate(player, new Vector2(spawnPointPosition.x, spawnPointPosition.y), Quaternion.identity);
             PlayerSpawned?.Invoke();
         }
