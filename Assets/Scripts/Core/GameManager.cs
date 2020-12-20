@@ -15,13 +15,11 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {        
         DontDestroyOnLoad(gameObject);
-        _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
         levelMaster.LevelLoaded += InitializeLevel;
     }
 
     private void Start()
     {
-        SpawnPlayer();
         spawnPlayer.performed += OnSpawnPlayer;
     }
 
@@ -32,14 +30,6 @@ public class GameManager : MonoBehaviour
 
     private void InitializeLevel(Level level)
     {
-        _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
-
-        if (_playerStart == null)
-        {
-            Debug.LogWarning("No Player Spawn Point defined. Creating default at (0;0)");
-            MakeSpawnPoint();
-        }
-        
         if(_playerInstance == null)
             SpawnPlayer();
     }
@@ -56,6 +46,14 @@ public class GameManager : MonoBehaviour
     }
     private void SpawnPlayer()
     {
+        _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
+
+        if (_playerStart == null)
+        {
+            Debug.LogWarning("No Player Spawn Point defined. Creating default at (0;0)");
+            MakeSpawnPoint();
+        }
+        
         if (player == null)
         {
             Debug.LogWarning("GameManager script is missing a Player object reference.");

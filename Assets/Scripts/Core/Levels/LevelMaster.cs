@@ -41,7 +41,12 @@ public class LevelMaster: ScriptableObject
 
     public void NewGame(Animator transition)
     {
-        LoadLevelWithIndex(1, transition);
+        LoadLevelWithIndex(0, transition);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 
     private void LevelLoadComplete(AsyncOperationHandle<SceneInstance> sceneInstance)
