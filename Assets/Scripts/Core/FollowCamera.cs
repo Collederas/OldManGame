@@ -13,18 +13,14 @@ public class FollowCamera : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.PlayerSpawned += SetTarget;
-
         _currentLevel = _gameManager.GetLevelMaster().GetCurrentLevel();
     }
-
+    
     private void SetTarget()
-    {
+    {   
+        print("target");
         _target = _gameManager.GetPlayer().gameObject;
     }
 
