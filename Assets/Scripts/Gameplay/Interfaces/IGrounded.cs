@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 // A Grounded object can fall
 public interface IGrounded
 {
-   Vector2 FallTargetPosition { get; set; }
-   void Fall();
+   void Fall(Vector2 fallTargetPosition);
 }

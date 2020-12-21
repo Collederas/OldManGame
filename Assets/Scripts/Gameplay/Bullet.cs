@@ -7,25 +7,22 @@ public class Bullet : MonoBehaviour
     public Vector2 Target { get; set;}
     public float Speed { get; set; } = 2;
     public int damage = 1;
-    private Vector2 startPosition;
+    private Vector2 _startPosition;
 
-    void Start()
+    private void Start()
     {
-        startPosition = transform.position;
+        _startPosition = transform.position;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        var damageableObject = other.GetComponent<IDamageable>();
-        if (damageableObject != null)
-        {
-            damageableObject.TakeDamage(damage);
-            Destroy(gameObject);
-        }
+        var damageableObject = collision.gameObject.GetComponent<IDamageable>();
+        damageableObject?.TakeDamage(damage);
+        Destroy(gameObject);
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        transform.Translate((Target - new Vector2(startPosition.x, startPosition.y)).normalized * Speed * Time.deltaTime);
+        transform.Translate((Target - new Vector2(_startPosition.x, _startPosition.y)).normalized * (Speed * Time.deltaTime));
     }
 }

@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        SpawnPlayer();
+
         spawnPlayer.performed += OnSpawnPlayer;
     }
 

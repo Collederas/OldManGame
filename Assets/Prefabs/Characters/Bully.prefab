@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6389456575842747561}
   - component: {fileID: 6658316319524080073}
   - component: {fileID: 1255752078397452791}
-  m_Layer: 10
+  - component: {fileID: 9199063826140250950}
+  m_Layer: 9
   m_Name: Feet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,6 +132,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58439654, y: 0.44213414}
   m_EdgeRadius: 0
+--- !u!114 &9199063826140250950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762945940188675725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d49654f0a13546d4b4abcbecea6472f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6001257782301223697
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +311,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2
-  bullet: {fileID: 3612076007814645927, guid: 9f4f3f6397fa44a0ebfe3d6cd704910b, type: 3}
+  fallingSpeed: 2
+  gameManager: {fileID: 0}
+  bullet: {fileID: 2651627891812929457, guid: 9f4f3f6397fa44a0ebfe3d6cd704910b, type: 3}
   shootingInterval: 2
   shootingSpeed: 5
-  fallingSpeed: 2

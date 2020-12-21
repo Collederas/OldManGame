@@ -1,18 +1,14 @@
 ﻿using UnityEngine;
 
-public abstract class MovingObjectController : MonoBehaviour, IGrounded
+public abstract class MovingObjectController : MonoBehaviour
 {    
-    public Vector2 FallTargetPosition { get; set; }
-
     public Vector2 Velocity { get; set; }
-    public Vector2 Impulse { get; set; }
-
     public float maxSpeed = 2f;
 
     protected void PerformMovement(Vector2 delta)
     { 
         // Transform is only a Vector3 so build delta as a 3D vector. 
-        transform.position = transform.position + new Vector3(delta.x, delta.y, 0);
+        transform.position += new Vector3(delta.x, delta.y, 0);
     }
 
     protected virtual void Update()
@@ -26,8 +22,7 @@ public abstract class MovingObjectController : MonoBehaviour, IGrounded
         PerformMovement(delta);
     }
 
-    public virtual void Fall()
+    public virtual void Fall(Vector2 fallTargetPosition)
     {
-
-    }
+    }   
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoggoController : EnemyStateMachineController
@@ -8,16 +6,16 @@ public class DoggoController : EnemyStateMachineController
     public DoggoIdleState idleState;
     public DoggoChaseState chaseState;
 
-    protected override void Start()
+    protected override void Awake()
     {
+        base.Awake();
+
         gameManager.PlayerSpawned += OnPlayerSpawned;
         idleState = new DoggoIdleState(this);
         chaseState = new DoggoChaseState(this);
 
         currentState = idleState;
-        base.Start();
     }
-
     protected void OnPlayerSpawned()
     {
         ChangeState(chaseState);

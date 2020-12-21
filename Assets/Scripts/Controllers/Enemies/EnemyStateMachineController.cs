@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyStateMachineController : MovingObjectController
 {
+    public Vector2 FallTargetPosition { get; set; }
+
     protected EnemyBaseState currentState;
     protected EnemyFallState fallState;
     public float fallingSpeed = 2f;
@@ -38,8 +40,9 @@ public class EnemyStateMachineController : MovingObjectController
         currentState.FixedUpdate();
         base.FixedUpdate();
     }
-    public override void Fall()
+    public override void Fall(Vector2 fallTargetPosition)
     {
+        FallTargetPosition = fallTargetPosition;
         ChangeState(fallState);
     }
 

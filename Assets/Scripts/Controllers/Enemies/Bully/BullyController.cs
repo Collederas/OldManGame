@@ -10,19 +10,14 @@
     {
         base.Awake();
         gameManager.PlayerSpawned += OnPlayerSpawned;
-    }
-
-    protected override void Start()
-    {
         idleState = new BullyIdleState(this);
         attackState = new BullyAttackState(this);
-
         currentState = idleState;
-        base.Start();
-    }
-
+    } 
     private void OnPlayerSpawned()
     {
+        if (currentState == null)
+            currentState = new BullyIdleState(this);
         ChangeState(attackState);
     }
 }

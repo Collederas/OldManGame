@@ -10,6 +10,8 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     public PlayerWalkingState walkingState;
     public PlayerBoostState boostState;
     public PlayerFallState fallState;
+    
+    public Vector2 FallTargetPosition { get; set; }
 
     public int maxHealth = 4;
 
@@ -73,10 +75,12 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         CurrentHealth -= damageAmount;
     }
 
-    public override void Fall()
+    public override void Fall(Vector2 fallTargetPosition)
     {
-        if (!(currentState is PlayerBoostState))
-            ChangeState(fallState);
+        if (currentState is PlayerBoostState) return;
+        print("fall");
+        ChangeState(fallState);
+        FallTargetPosition = fallTargetPosition;
     }
 
     protected override void Update()
