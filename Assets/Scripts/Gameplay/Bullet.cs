@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print("collided");
         var damageableObject = collision.gameObject.GetComponent<IDamageable>();
         damageableObject?.TakeDamage(damage);
         Destroy(gameObject);

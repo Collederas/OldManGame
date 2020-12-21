@@ -78,7 +78,6 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     public override void Fall(Vector2 fallTargetPosition)
     {
         if (currentState is PlayerBoostState) return;
-        print("fall");
         ChangeState(fallState);
         FallTargetPosition = fallTargetPosition;
     }

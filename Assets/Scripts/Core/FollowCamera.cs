@@ -20,7 +20,6 @@ public class FollowCamera : MonoBehaviour
     
     private void SetTarget()
     {   
-        print("target");
         _target = _gameManager.GetPlayer().gameObject;
     }
 
