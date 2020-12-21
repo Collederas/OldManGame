@@ -19,7 +19,7 @@ TagManager:
   - 
   - Bullet
   - Enemy
-  - 
+  - Foreground
   - Hole
   - Invincible
   - 
@@ -45,7 +45,7 @@ TagManager:
   - name: Characters
     uniqueID: 2868254847
     locked: 0
-  - name: Ground
+  - name: 
     uniqueID: 2160338747
     locked: 0
   - name: Default
