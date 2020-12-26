@@ -19,11 +19,11 @@ TagManager:
   - 
   - Bullet
   - Enemy
-  - Foreground
+  - Damageable
   - Hole
   - Invincible
-  - 
-  - 
+  - Cover
+  - DamageableDetection
   - 
   - 
   - 

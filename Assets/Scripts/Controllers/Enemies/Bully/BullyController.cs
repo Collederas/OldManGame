@@ -18,6 +18,10 @@
     {
         if (currentState == null)
             currentState = new BullyIdleState(this);
+    }
+
+    private void OnFOVTagDetected()
+    {
         ChangeState(attackState);
     }
 }
