@@ -35,15 +35,11 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     public float maxWalkingSpeed = 2f;
     public float fallingSpeed = 2f;
 
-    [HideInInspector]
-    public int defaultLayer;
-
     private Vector2 _inputAcceleration;
     private Vector2 _impulseAcceleration;
 
     public void Start()
     {   
-        defaultLayer = LayerMask.NameToLayer("Default");
         CurrentHealth = maxHealth;
 
         maxSpeed = maxWalkingSpeed;

@@ -33,7 +33,6 @@ public class PlayerFallState : PlayerBaseState
             elapsedTime += Time.fixedDeltaTime;
         } else {
             player.CurrentHealth = 0;
-            player.gameObject.layer = player.defaultLayer;
         }
     }
 

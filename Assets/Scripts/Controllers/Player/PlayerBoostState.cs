@@ -1,18 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerBoostState : PlayerBaseState
 {
-    float elapsedTime;
+    private float _elapsedTime;
+    private int _entryLayer;
 
     public PlayerBoostState(PlayerController player) : base(player){}
 
     public override void Enter()
     {
-        elapsedTime = 0f;
+        _elapsedTime = 0f;
         player.maxSpeed = player.maxBoostingSpeed;
+        _entryLayer = player.gameObject.layer;
         player.gameObject.layer = LayerMask.NameToLayer("Invincible");
     }
 
@@ -32,9 +32,9 @@ public class PlayerBoostState : PlayerBaseState
         var boostDistance = player.boostDistance;
         var boostDuration = player.boostDuration;
 
-        if (elapsedTime <= boostDuration) {
+        if (_elapsedTime <= boostDuration) {
             player.Velocity = player.Velocity.normalized * (boostDistance/boostDuration);
-            elapsedTime += Time.fixedDeltaTime;
+            _elapsedTime += Time.fixedDeltaTime;
         }
         else {
             player.ChangeState(player.walkingState);
@@ -45,6 +45,6 @@ public class PlayerBoostState : PlayerBaseState
     {
         player.Velocity = Vector2.zero;
         player.maxSpeed = player.maxWalkingSpeed;
-        player.gameObject.layer = player.defaultLayer;
+        player.gameObject.layer = _entryLayer;
     }
 }
