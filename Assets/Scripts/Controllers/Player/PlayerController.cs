@@ -48,6 +48,17 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         fallState = new PlayerFallState(this);
         currentState = walkingState;
     }
+
+    public void DeactivateInput()
+    {
+        GetComponent<PlayerInput>().DeactivateInput();
+        Velocity = Vector2.zero;
+    }
+    
+    public void ActivateInput()
+    {
+        GetComponent<PlayerInput>().ActivateInput();
+    }
     
     public void ChangeState(PlayerBaseState newState)
     {
