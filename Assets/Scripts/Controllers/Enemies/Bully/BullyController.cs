@@ -24,4 +24,9 @@
     {
         ChangeState(attackState);
     }
+    
+    private void OnFOVTagLost()
+    {
+        ChangeState(idleState);
+    }
 }

@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     public LevelMaster levelMaster;
 
     private PlayerController _playerInstance;
+    private Camera _mainCamera;
     private GameObject _playerStart;
 
     private void Awake()
     {        
         DontDestroyOnLoad(gameObject);
+        _mainCamera = FindObjectOfType<Camera>();
         levelMaster.LevelLoaded += InitializeLevel;
     }
 
@@ -77,6 +79,11 @@ public class GameManager : MonoBehaviour
     public PlayerController GetPlayer()
     {
         return _playerInstance;
+    }
+    
+    public Camera GetMainCamera()
+    {
+        return _mainCamera;
     }
 
     public LevelMaster GetLevelMaster()

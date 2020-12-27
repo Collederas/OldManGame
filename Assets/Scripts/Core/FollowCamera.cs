@@ -9,13 +9,20 @@ public class FollowCamera : MonoBehaviour
     private GameManager _gameManager;
     private Level _currentLevel;
     private GameObject _target;
+    private bool _followPlayer;
 
+    public void SetFollowPlayer(bool value)
+    {
+        _followPlayer = value;
+    }
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         _gameManager = FindObjectOfType<GameManager>();
         _gameManager.PlayerSpawned += SetTarget;
         _currentLevel = _gameManager.GetLevelMaster().GetCurrentLevel();
+
+        _followPlayer = true;
     }
     
     private void SetTarget()
@@ -24,8 +31,8 @@ public class FollowCamera : MonoBehaviour
     }
 
     private void LateUpdate()
-    {
-        if (!_target) return;
+    { 
+        if (!_target || !_followPlayer) return;
         var targetPosition = _target.transform.position;
         var newCameraPosition = new Vector3(targetPosition.x, targetPosition.y, transform.position.z)
         {
