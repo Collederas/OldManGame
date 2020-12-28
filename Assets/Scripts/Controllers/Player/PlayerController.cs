@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(HealthBar))]
 public class PlayerController : MovingObjectController, IDamageable, IKillable
 {   
-    public Action updateHealth;
     public PlayerBaseState currentState;
+    public PlayerIdleState idleState;
     public PlayerWalkingState walkingState;
     public PlayerBoostState boostState;
     public PlayerFallState fallState;
     
     public Vector2 FallTargetPosition { get; set; }
 
+    public int lives = 5;
     public int maxHealth = 4;
 
     private int _currentHealth;
@@ -22,11 +23,10 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         set 
         {
             _currentHealth = value;
-            updateHealth?.Invoke();
+            BroadcastMessage("UpdateHealthBar", value);
         }
     }
-
-
+    
     [Range(0.0f, 5.0f)]
     public float boostDuration = 1f;
     [Range(0.0f, 10.0f)]
@@ -39,25 +39,27 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     private Vector2 _impulseAcceleration;
 
     public void Start()
-    {   
+    {
         CurrentHealth = maxHealth;
 
         maxSpeed = maxWalkingSpeed;
         walkingState = new PlayerWalkingState(this);
         boostState = new PlayerBoostState(this);
         fallState = new PlayerFallState(this);
+        idleState = new PlayerIdleState(this);
         currentState = walkingState;
     }
 
     public void DeactivateInput()
     {
         GetComponent<PlayerInput>().DeactivateInput();
-        Velocity = Vector2.zero;
+        ChangeState(idleState);
     }
     
     public void ActivateInput()
     {
         GetComponent<PlayerInput>().ActivateInput();
+        ChangeState(walkingState);
     }
     
     public void ChangeState(PlayerBaseState newState)
@@ -107,6 +109,9 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
     public void Die()
     {
+        lives--;
+        if (lives == 0)
+            Debug.Log("Send message lives = 0");
         Destroy(gameObject);
     }
 }

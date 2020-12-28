@@ -11,4 +11,10 @@ public class EnemyFOV : MonoBehaviour
         if (other.gameObject.CompareTag(detectionTag))
             SendMessageUpwards("OnFOVTagDetected");
     }
+    
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag(detectionTag))
+            SendMessageUpwards("OnFOVTagLost");
+    }
 }

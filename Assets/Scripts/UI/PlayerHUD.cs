@@ -3,28 +3,15 @@
 public class PlayerHUD : MonoBehaviour
 {
     public HealthBar healthBar;
-    private GameManager _gameManager;
 
     public void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        _gameManager = FindObjectOfType<GameManager>();
-        _gameManager.PlayerSpawned += OnPlayerSpawned;
-
         if (healthBar == null)
-            healthBar = FindObjectOfType<HealthBar>();
+            healthBar = GetComponentInChildren<HealthBar>();
     }
 
-    private void OnPlayerSpawned()
+    private void UpdateHealthBar(int currentHealth)
     {
-        if (_gameManager)
-        {
-            _gameManager.GetPlayer().updateHealth += UpdateHealthBar;
-        }
-    }
-
-    private void UpdateHealthBar()
-    {
-        healthBar.SetHealth(_gameManager.GetPlayer().CurrentHealth);
+        healthBar.SetHealth(currentHealth);
     }
 }

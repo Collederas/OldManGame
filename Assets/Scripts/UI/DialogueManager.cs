@@ -44,7 +44,7 @@ namespace UI
 
         public void StartDialogue(Dialogue dialogue)
         {
-            StartCoroutine(_StartDialogue(dialogue));
+            StartCoroutine(StartDialogueRoutine(dialogue));
         }
 
         private void DisplayNextSentence()
@@ -82,16 +82,18 @@ namespace UI
             
             foreach (var letter in sentence.ToCharArray())
             {
+                
                 displayText.text += letter;
                 yield return new WaitForSeconds(seconds);
             }
         }
 
-        private IEnumerator _StartDialogue(Dialogue dialogue)
+        public IEnumerator StartDialogueRoutine(Dialogue dialogue)
         {
             displayText.text = "";
 
             yield return DisplayTextBox();
+            
             nextSentence.Enable();
             _sentences.Clear();
 
