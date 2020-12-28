@@ -43,22 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53fb1de24fe248c680f7745e6f618b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPlayer:
-    m_Name: Spawn Player
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8b3e39d3-4960-4697-8422-4a15fc816eed
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 40e92e04-9abc-4b06-b7c9-363b13170657
-      m_Path: <Keyboard>/o
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Spawn Player
-      m_Flags: 0
   player: {fileID: 7269023912058156703, guid: d7134c909ab6b44a1af0876db767b801, type: 3}
-  playerSpawnPoint: {fileID: 0}
-  levelMaster: {fileID: 11400000, guid: e80818b370a39476d9b05196cf6c231f, type: 2}
+  levelManager: {fileID: 11400000, guid: e80818b370a39476d9b05196cf6c231f, type: 2}
+  levelTransition: {fileID: 7182332727607842417, guid: e4feb486ee1ea470c8d044d7f1e39de2,
+    type: 3}

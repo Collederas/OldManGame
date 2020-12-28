@@ -29,6 +29,18 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 36882739f39c44c5299fa0ce48693dc7
+    m_Address: Assets/Scenes/Persistent Scene.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: 3df4485b19cd64d6892375280eb05cb1
+    m_Address: Assets/Scenes/Main Menu.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ccd13b6acc0034a1e92065b7fc92c5cc, type: 2}
   m_SchemaSet:

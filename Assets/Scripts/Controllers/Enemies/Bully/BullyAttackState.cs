@@ -1,50 +1,48 @@
-﻿using System.Collections.Generic;
-using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BullyAttackState : BullyBaseState
 {
-    public bool bCanShoot;
-    private float elapsedTime;
-    GameManager gameManager;
-    
-    GameObject target;
+    private float _elapsedTime;
+    private GameObject _target;
 
-    public BullyAttackState(BullyController enemy) : base(enemy) {}
+    public BullyAttackState(BullyController enemy) : base(enemy)
+    {
+    }
 
 
     public override void Enter()
     {
-        elapsedTime = 0f;
-        target = bully.gameManager.GetPlayer().gameObject;
-        if (target == null)
+        _elapsedTime = 0f;
+        _target = GameManager.Instance.GetPlayerController().gameObject;
+        if (!_target)
             bully.ChangeState(bully.idleState);
     }
 
     public override void Update()
     {
-
     }
+
     public override void FixedUpdate()
-    {   
-        if (target) 
+    {
+        if (_target)
         {
-        if (elapsedTime > bully.shootingInterval)
-        {
-            var obj = GameObject.Instantiate(
-                bully.bullet,
-                new Vector3(bully.transform.position.x, bully.transform.position.y, 0),
-                Quaternion.identity
-            );
-            obj.Target = target.transform.position;
-            obj.Speed = bully.shootingSpeed;
-            elapsedTime = 0f;
+            if (_elapsedTime > bully.shootingInterval)
+            {
+                var obj = Object.Instantiate(
+                    bully.bullet,
+                    new Vector3(bully.transform.position.x, bully.transform.position.y, 0),
+                    Quaternion.identity
+                );
+                obj.Target = _target.transform.position;
+                obj.Speed = bully.shootingSpeed;
+                _elapsedTime = 0f;
+            }
+            else
+            {
+                _elapsedTime += Time.fixedDeltaTime;
+            }
         }
         else
-        {
-            elapsedTime += Time.fixedDeltaTime;
-        }
-        } else 
         {
             bully.ChangeState(bully.idleState);
         }
@@ -52,6 +50,5 @@ public class BullyAttackState : BullyBaseState
 
     public override void Exit()
     {
-
     }
 }

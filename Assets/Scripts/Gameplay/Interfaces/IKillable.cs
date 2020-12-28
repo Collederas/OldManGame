@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-public interface IKillable
+﻿public interface IKillable
 {
     void Die();
 }

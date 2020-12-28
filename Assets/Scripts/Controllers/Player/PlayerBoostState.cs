@@ -6,7 +6,9 @@ public class PlayerBoostState : PlayerBaseState
     private float _elapsedTime;
     private int _entryLayer;
 
-    public PlayerBoostState(PlayerController player) : base(player){}
+    public PlayerBoostState(PlayerController player) : base(player)
+    {
+    }
 
     public override void Enter()
     {
@@ -23,20 +25,23 @@ public class PlayerBoostState : PlayerBaseState
     public override void OnFire()
     {
     }
+
     public override void Update()
     {
-
     }
+
     public override void FixedUpdate()
     {
         var boostDistance = player.boostDistance;
         var boostDuration = player.boostDuration;
 
-        if (_elapsedTime <= boostDuration) {
-            player.Velocity = player.Velocity.normalized * (boostDistance/boostDuration);
+        if (_elapsedTime <= boostDuration)
+        {
+            player.Velocity = player.Velocity.normalized * (boostDistance / boostDuration);
             _elapsedTime += Time.fixedDeltaTime;
         }
-        else {
+        else
+        {
             player.ChangeState(player.walkingState);
         }
     }

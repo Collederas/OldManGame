@@ -7,15 +7,13 @@ public class TutorialTrigger : MonoBehaviour
 {
     public List<TutorialAction> tutorialActions;
 
-    private GameManager _gameManager;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        _gameManager = FindObjectOfType<GameManager>();
-        
-        var player = _gameManager.GetPlayer();
+
+        var player = GameManager.Instance.GetPlayerController();
         player.DeactivateInput();
-        
+
         StartCoroutine(StartActionSequence());
     }
 
@@ -23,10 +21,11 @@ public class TutorialTrigger : MonoBehaviour
     {
         foreach (var action in tutorialActions)
         {
-            action.Init(_gameManager);
+            action.Init();
             yield return StartCoroutine(action.Execute());
         }
-        _gameManager.GetPlayer().ActivateInput();
+
+        GameManager.Instance.GetPlayerController().ActivateInput();
 
         Destroy(gameObject);
     }

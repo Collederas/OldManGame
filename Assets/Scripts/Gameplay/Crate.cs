@@ -1,19 +1,12 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Crate : MonoBehaviour, IGrounded
 {
-    public Vector2 FallTargetPosition { get; set; }
     public float fallingSpeed = 2f;
 
-    private bool _fall = false;
-    private float _fallingTime = 0f;
-
-    public void Fall(Vector2 fallTargetPosition)
-    {
-        FallTargetPosition = fallTargetPosition;
-        _fall = true;
-    }
+    private bool _fall;
+    private float _fallingTime;
+    public Vector2 FallTargetPosition { get; set; }
 
     public void FixedUpdate()
     {
@@ -29,5 +22,11 @@ public class Crate : MonoBehaviour, IGrounded
         {
             Destroy(gameObject);
         }
+    }
+
+    public void Fall(Vector2 fallTargetPosition)
+    {
+        FallTargetPosition = fallTargetPosition;
+        _fall = true;
     }
 }

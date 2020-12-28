@@ -1,26 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public Vector2 Target { get; set; }
-    public float Speed { get; set; } = 2;
+    private const float MAX_TTL = 4f;
     public int damage = 1;
     private Vector2 _startPosition;
-    private const float MAX_TTL = 4f;
     private float _timeLived;
+    public Vector2 Target { get; set; }
+    public float Speed { get; set; } = 2;
 
     private void Start()
     {
         _startPosition = transform.position;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var damageableObject = collision.gameObject.GetComponent<IDamageable>();
-        damageableObject?.TakeDamage(damage);
-        Destroy(gameObject);
     }
 
     private void FixedUpdate()
@@ -35,5 +26,12 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var damageableObject = collision.gameObject.GetComponent<IDamageable>();
+        damageableObject?.TakeDamage(damage);
+        Destroy(gameObject);
     }
 }

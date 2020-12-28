@@ -3,20 +3,19 @@ using UnityEngine;
 public class DoggoController : EnemyStateMachineController
 {
     public GameObject target;
-    public DoggoIdleState idleState;
     public DoggoChaseState chaseState;
+    public DoggoIdleState idleState;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
-        gameManager.PlayerSpawned += OnPlayerSpawned;
+        GameManager.Instance.PlayerSpawned += OnPlayerSpawned;
         idleState = new DoggoIdleState(this);
         chaseState = new DoggoChaseState(this);
 
         currentState = idleState;
     }
-    protected void OnPlayerSpawned()
+
+    private void OnPlayerSpawned()
     {
         ChangeState(chaseState);
     }

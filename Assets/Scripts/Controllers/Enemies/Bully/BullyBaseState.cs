@@ -4,6 +4,6 @@
 
     public BullyBaseState(BullyController enemy)
     {
-        this.bully = enemy;
+        bully = enemy;
     }
 }
