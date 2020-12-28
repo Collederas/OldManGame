@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(HealthBar))]
 public class PlayerController : MovingObjectController, IDamageable, IKillable
-{   
+{
+    public event Action PlayerDead;
     public PlayerBaseState currentState;
     public PlayerIdleState idleState;
     public PlayerWalkingState walkingState;
@@ -112,6 +113,8 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         lives--;
         if (lives == 0)
             Debug.Log("Send message lives = 0");
+        else
+            PlayerDead?.Invoke();
         Destroy(gameObject);
     }
 }

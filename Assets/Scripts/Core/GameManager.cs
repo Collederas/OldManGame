@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
     public event Action PlayerSpawned;
-    public InputAction spawnPlayer;
     public PlayerController player;
     public LevelMaster levelMaster;
 
@@ -22,58 +22,56 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        SpawnPlayer();
-
-        spawnPlayer.performed += OnSpawnPlayer;
-    }
-
-    private void OnEnable()
-    {
-        spawnPlayer.Enable();
-    }
-
-    private void InitializeLevel(Level level)
-    {
-        if(_playerInstance == null)
-            SpawnPlayer();
+        StartCoroutine(SpawnPlayer(false));
     }
     
-    private void OnSpawnPlayer(InputAction.CallbackContext context)
+    private void InitializeLevel(Level level)
     {
-        SpawnPlayer();
+        if (_playerInstance != null) return;
+        StartCoroutine(SpawnPlayer());
     }
 
+    private void OnPlayerDead()
+    {
+        _playerInstance = null;
+        StartCoroutine(SpawnPlayer());
+    }
+    
     private void MakeSpawnPoint()
     {
         _playerStart = new GameObject();
         _playerStart.transform.position = Vector2.zero;
     }
-    private void SpawnPlayer()
+    private IEnumerator SpawnPlayer(bool delaySpawn = true)
     {
         _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
 
-        if (_playerStart == null)
+        if (!_playerStart)
         {
             Debug.LogWarning("No Player Spawn Point defined. Creating default at (0;0)");
             MakeSpawnPoint();
         }
         
-        if (player == null)
+        if (!player)
         {
             Debug.LogWarning("GameManager script is missing a Player object reference.");
-            return;
         }
 
-        if (_playerInstance == null )
+        if (!_playerInstance)
         {
+            if (delaySpawn)
+                yield return new WaitForSeconds(2);
             var spawnPointPosition = _playerStart.transform.position;
             _playerInstance = Instantiate(player, new Vector2(spawnPointPosition.x, spawnPointPosition.y), Quaternion.identity);
+            _playerInstance.PlayerDead += OnPlayerDead;
             PlayerSpawned?.Invoke();
         }
         else
         {
             Debug.LogWarning("Attempt to spawn player when one exists already.");
         }
+
+        yield return null;
     }
 
     public PlayerController GetPlayer()
