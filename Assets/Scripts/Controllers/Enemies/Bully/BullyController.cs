@@ -1,19 +1,19 @@
 ﻿public class BullyController : EnemyStateMachineController, IKillable
 {
-    public BullyAttackState attackState;
-    public BullyIdleState idleState;
     public Bullet bullet;
     public float shootingInterval = 2f;
     public float shootingSpeed = 8f;
+    public BullyAttackState attackState;
+    public BullyIdleState idleState;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-        gameManager.PlayerSpawned += OnPlayerSpawned;
+        GameManager.Instance.PlayerSpawned += OnPlayerSpawned;
         idleState = new BullyIdleState(this);
         attackState = new BullyAttackState(this);
         currentState = idleState;
-    } 
+    }
+
     private void OnPlayerSpawned()
     {
         if (currentState == null)
@@ -24,7 +24,7 @@
     {
         ChangeState(attackState);
     }
-    
+
     private void OnFOVTagLost()
     {
         ChangeState(idleState);

@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlayerIdleState : PlayerBaseState
 {
-
-    public PlayerIdleState(PlayerController player) : base(player){}
+    public PlayerIdleState(PlayerController player) : base(player)
+    {
+    }
 
     public override void Enter()
     {

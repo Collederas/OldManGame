@@ -3,17 +3,17 @@ using UI;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "TutorialDialogue", menuName = "Tutorial Actions/Dialogue")]
-
 public class T_Dialogue : TutorialAction
 {
     public Dialogue dialogue;
-    
-    private bool _dialogueRunning = false;
     private DialogueManager _dialogueManager;
+
+    private bool _dialogueRunning;
     private PlayerController _player;
-    public override void Init(GameManager gameManager)
+
+    public override void Init()
     {
-        _player = gameManager.GetPlayer();
+        _player = GameManager.Instance.GetPlayerController();
         _dialogueManager = FindObjectOfType<DialogueManager>();
         _dialogueRunning = true;
     }
@@ -22,7 +22,7 @@ public class T_Dialogue : TutorialAction
     {
         _dialogueManager.DialogueEnded += OnDialogueEnded;
         _dialogueManager.StartDialogue(dialogue);
-        while(_dialogueRunning)
+        while (_dialogueRunning)
             yield return null;
     }
 
@@ -31,4 +31,3 @@ public class T_Dialogue : TutorialAction
         _dialogueRunning = false;
     }
 }
-

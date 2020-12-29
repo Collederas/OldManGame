@@ -6,27 +6,27 @@ using UnityEngine;
 public class TutorialTrigger : MonoBehaviour
 {
     public List<TutorialAction> tutorialActions;
+    private PlayerController _playerController;
 
-    private GameManager _gameManager;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
-        _gameManager = FindObjectOfType<GameManager>();
-        
-        var player = _gameManager.GetPlayer();
-        player.DeactivateInput();
-        
+
+        _playerController = other.GetComponent<PlayerController>();
+
         StartCoroutine(StartActionSequence());
     }
 
     private IEnumerator StartActionSequence()
     {
+        _playerController.DeactivateInput();
+
         foreach (var action in tutorialActions)
         {
-            action.Init(_gameManager);
+            action.Init();
             yield return StartCoroutine(action.Execute());
         }
-        _gameManager.GetPlayer().ActivateInput();
+        _playerController.ActivateInput();
 
         Destroy(gameObject);
     }

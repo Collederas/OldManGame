@@ -1,5 +1,4 @@
-﻿
-public abstract class EnemyBaseState
+﻿public abstract class EnemyBaseState
 {
     public abstract void Enter();
     public abstract void Update();

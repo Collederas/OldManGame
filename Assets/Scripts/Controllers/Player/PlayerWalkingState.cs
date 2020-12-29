@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerWalkingState : PlayerBaseState
 {
     protected Vector2 inputAcceleration;
-    
-    public PlayerWalkingState(PlayerController player) : base(player){}
+
+    public PlayerWalkingState(PlayerController player) : base(player)
+    {
+    }
 
     public override void Enter()
     {
+        player.Velocity = Vector2.zero;
     }
 
     public override void OnMove(InputValue value)
@@ -20,6 +23,7 @@ public class PlayerWalkingState : PlayerBaseState
     {
         player.ChangeState(player.boostState);
     }
+
     public override void Update()
     {
         player.Velocity = inputAcceleration;
@@ -27,11 +31,9 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void FixedUpdate()
     {
-
     }
 
     public override void Exit()
     {
-
     }
 }

@@ -1,17 +1,41 @@
-﻿using UnityEngine;
-
-public class PlayerHUD : MonoBehaviour
+﻿public class PlayerHUD : Singleton<PlayerHUD>
 {
-    public HealthBar healthBar;
+    private HealthBar _healthBar;
+    private LivesCounter _livesCounter;
 
-    public void Awake()
+    protected override void Awake()
     {
-        if (healthBar == null)
-            healthBar = GetComponentInChildren<HealthBar>();
+        base.Awake();
+        _healthBar = GetComponentInChildren<HealthBar>();
+        _livesCounter = GetComponentInChildren<LivesCounter>();
     }
 
-    private void UpdateHealthBar(int currentHealth)
+    public void Start()
     {
-        healthBar.SetHealth(currentHealth);
+        gameObject.SetActive(false);
+        GameManager.Instance.GameStateChanged += OnGameStateChanged;
+        GameManager.Instance.PlayerSpawned += OnPlayerSpawned;
+        GameManager.Instance.LivesUpdated += OnUpdateLivesCount;
+    }
+
+    private void OnPlayerSpawned()
+    {
+        GameManager.Instance.GetPlayerController().UpdateHealthBar += OnUpdateHealthBar;
+    }
+    
+    private void OnGameStateChanged(GameManager.GameState previousState, GameManager.GameState currentState)
+    {
+        if (currentState == GameManager.GameState.Running)
+            gameObject.SetActive(true);
+    }
+
+    private void OnUpdateHealthBar(int currentHealth)
+    {
+        _healthBar.SetHealth(currentHealth);
+    }
+    
+    private void OnUpdateLivesCount(int currentLives)
+    {
+        _livesCounter.SetCount(currentLives);
     }
 }

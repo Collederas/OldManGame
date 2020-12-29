@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public abstract class DoggoBaseState : EnemyBaseState
+﻿public abstract class DoggoBaseState : EnemyBaseState
 {
     protected DoggoController doggo;
 

@@ -100,9 +100,9 @@ GameObject:
   - component: {fileID: 7182332727607842421}
   - component: {fileID: 7182332727607842420}
   - component: {fileID: 7182332727607842419}
-  - component: {fileID: 7182332727607842418}
+  - component: {fileID: 5365120344648747194}
   m_Layer: 0
-  m_Name: Crossfade Canvas
+  m_Name: Level Transition Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!95 &7182332727607842418
+--- !u!95 &5365120344648747194
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -198,7 +198,7 @@ Animator:
   m_GameObject: {fileID: 7182332727607842417}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ef34ae05a97b142ec8ab427881917315, type: 2}
+  m_Controller: {fileID: 9100000, guid: a8317a20102034327b75ff5bf516cc9e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
