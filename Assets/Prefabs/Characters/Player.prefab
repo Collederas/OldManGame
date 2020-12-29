@@ -221,7 +221,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSpeed: 2
-  maxHealth: 1
+  moveAction:
+    m_Name: Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ba481d1f-b3a6-4563-86d9-d9fdf6472f95
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  maxHealth: 4
   boostDuration: 0.1
   boostDistance: 2
   maxBoostingSpeed: 20
