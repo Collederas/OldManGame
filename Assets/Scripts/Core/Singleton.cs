@@ -9,7 +9,7 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
     protected virtual void Awake()
     {
         if (Instance != null)
-            Debug.LogError("Trying to instantiate a second instance of a Singleton");
+            Destroy(this);
         else
             Instance = (T) this;
     }

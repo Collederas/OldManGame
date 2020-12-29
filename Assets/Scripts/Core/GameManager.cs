@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -9,45 +10,65 @@ public class GameManager : Singleton<GameManager>
         Pregame,
         Running
     }
+    public event Action PlayerSpawned;
+    public event Action<int> LivesUpdated;
+    public event Action<GameState, GameState> GameStateChanged;
 
     private static Camera _mainCamera;
 
     public PlayerController player;
-    public LevelManager levelManager;
+    public int playerLives;
+    public int startingLevel = 0;
 
     public GameObject levelTransition;
 
+    private int _currentLevelIndex;
     private PlayerController _playerController;
+    private int _currentPlayerLives;
     private GameObject _playerStart;
 
     public GameState CurrentGameState { get; private set; } = GameState.Pregame;
+
+    public int CurrentLevelIndex
+    {
+        get => _currentLevelIndex;
+        set
+        {
+            _currentLevelIndex = value;
+        }
+    }
+
+    public int CurrentPlayerLives
+    {
+        get => _currentPlayerLives;
+        set
+        {
+            _currentPlayerLives = value;
+            LivesUpdated?.Invoke(value);
+        }
+    }
 
     protected override void Awake()
     {
         base.Awake();
         _mainCamera = FindObjectOfType<Camera>();
-
-        if (levelManager) return;
-        Debug.LogError("[GameManager] No LevelManager set. Quit the application and set the reference.");
-        Debug.Break();
     }
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        levelManager.LevelLoaded += InitializeLevel;
-        levelManager.LoadLevel(0, levelTransition.GetComponent<Animator>());
+        UpdateState(GameState.Pregame);
+        LoadLevel(startingLevel);
     }
 
-    public event Action PlayerSpawned;
-
-    public void StartGame()
+    public void LoadLevel(int index = 0)
     {
-        UpdateState(GameState.Running);
-        levelManager.UnloadCurrentLevel();
-        levelManager.LoadLevel(1, levelTransition.GetComponent<Animator>());
+        CurrentPlayerLives = playerLives;
+        CurrentLevelIndex = index;
+        SceneManager.Instance.LoadLevel(index, levelTransition.GetComponent<Animator>());
+        SceneManager.Instance.LevelLoaded += InitializeLevel;
     }
-
+    
     public void QuitGame()
     {
         Application.Quit();
@@ -55,6 +76,7 @@ public class GameManager : Singleton<GameManager>
 
     private void UpdateState(GameState newState)
     {
+        var previousState = CurrentGameState;
         CurrentGameState = newState;
         switch (newState)
         {
@@ -62,19 +84,24 @@ public class GameManager : Singleton<GameManager>
                 break;
             case GameState.Running:
                 break;
+            default:
+                break;
         }
+        GameStateChanged?.Invoke(previousState, newState);
     }
 
-    private void InitializeLevel(Level level)
+    private void InitializeLevel()
     {
+        var level = SceneManager.Instance.levelManager.levels[CurrentLevelIndex];
         if (level.levelType != Level.LevelType.Gameplay) return;
+        UpdateState(GameState.Running);
         if (_playerController) return;
         StartCoroutine(SpawnPlayer(false));
     }
 
     private void OnPlayerSpawned(PlayerController playerController)
     {
-        SetupFollowCamera(playerController.gameObject, levelManager.GetCurrentLevel().levelSize);
+        SetupFollowCamera(playerController.gameObject, SceneManager.Instance.levelManager.levels[CurrentLevelIndex].levelSize);
     }
 
     private void SetupFollowCamera(GameObject target, Vector2 boundaries)
@@ -84,13 +111,7 @@ public class GameManager : Singleton<GameManager>
         followCamera.Target = target;
         followCamera.SetFollowPlayer(true);
     }
-
-    private void OnPlayerDead()
-    {
-        _playerController = null;
-        StartCoroutine(SpawnPlayer());
-    }
-
+    
     private void MakeSpawnPoint()
     {
         _playerStart = new GameObject();
@@ -128,6 +149,25 @@ public class GameManager : Singleton<GameManager>
         }
 
         yield return null;
+    }
+
+    private void OnPlayerOutOfLives()
+    {
+        SceneManager.Instance.LoadLevel(3, levelTransition.GetComponent<Animator>());
+        CurrentLevelIndex = 3;
+    }
+    
+    private void OnPlayerDead()
+    {
+        CurrentPlayerLives--;
+
+        _playerController = null;
+        if (CurrentPlayerLives == 0)
+        {
+            OnPlayerOutOfLives();
+            return;
+        }
+        StartCoroutine(SpawnPlayer());
     }
 
     public PlayerController GetPlayerController()

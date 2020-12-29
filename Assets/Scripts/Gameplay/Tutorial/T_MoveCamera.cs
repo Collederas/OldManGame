@@ -39,7 +39,7 @@ public class T_MoveCamera : TutorialAction
         var elapsedTime = 0f;
         var increment = Time.fixedDeltaTime;
 
-        while (elapsedTime < duration)
+        while ((int)_camera.transform.position.magnitude != (int)_destination.magnitude)
         {
             var currentCameraPos = _camera.transform.position;
             _camera.transform.position += (_destination - currentCameraPos) / duration * increment;

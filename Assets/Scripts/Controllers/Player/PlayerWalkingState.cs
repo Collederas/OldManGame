@@ -11,6 +11,7 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void Enter()
     {
+        player.Velocity = Vector2.zero;
     }
 
     public override void OnMove(InputValue value)

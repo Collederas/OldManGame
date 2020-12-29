@@ -10,7 +10,15 @@ public class Level : ScriptableObject
         Gameplay
     }
 
+    public enum LevelLoadStatus
+    {
+        NotLoaded,
+        Loading,
+        Loaded,
+    }
+    
     public Vector2 levelSize;
     public AssetReference scene;
     public LevelType levelType;
+    public LevelLoadStatus levelLoadStatus = LevelLoadStatus.NotLoaded;
 }

@@ -5,7 +5,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(HealthBar))]
 public class PlayerController : MovingObjectController, IDamageable, IKillable
 {
-    public int lives = 5;
+    public event Action PlayerDead;
+    public event Action<int> UpdateHealthBar;
+    
     public int maxHealth = 4;
 
     [Range(0.0f, 5.0f)] public float boostDuration = 1f;
@@ -34,14 +36,14 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         set
         {
             _currentHealth = value;
-            BroadcastMessage("UpdateHealthBar", value);
+            UpdateHealthBar?.Invoke(value);
         }
     }
-
+    
     public void Start()
     {
         CurrentHealth = maxHealth;
-
+        
         maxSpeed = maxWalkingSpeed;
         walkingState = new PlayerWalkingState(this);
         boostState = new PlayerBoostState(this);
@@ -70,15 +72,9 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
     public void Die()
     {
-        lives--;
-        if (lives == 0)
-            Debug.Log("Send message lives = 0");
-        else
-            PlayerDead?.Invoke();
+        PlayerDead?.Invoke();
         Destroy(gameObject);
     }
-
-    public event Action PlayerDead;
 
     public void DeactivateInput()
     {

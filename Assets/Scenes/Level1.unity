@@ -1795,12 +1795,12 @@ PrefabInstance:
     - target: {fileID: 2878862632099187647, guid: 791bd48a20ad04778ab5ab96aa147e44,
         type: 3}
       propertyPath: m_Radius
-      value: 7.6655617
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2878862632099187647, guid: 791bd48a20ad04778ab5ab96aa147e44,
         type: 3}
       propertyPath: m_Offset.x
-      value: 7.946251
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3203477427069827134, guid: 791bd48a20ad04778ab5ab96aa147e44,
         type: 3}
@@ -1881,6 +1881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: shootingInterval
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8318471871815402553, guid: 791bd48a20ad04778ab5ab96aa147e44,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 791bd48a20ad04778ab5ab96aa147e44, type: 3}
@@ -4277,7 +4282,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1545379177
 Transform:
   m_ObjectHideFlags: 0
