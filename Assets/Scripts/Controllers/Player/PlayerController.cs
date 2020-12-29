@@ -3,10 +3,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(HealthBar))]
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MovingObjectController, IDamageable, IKillable
 {
     public event Action PlayerDead;
     public event Action<int> UpdateHealthBar;
+
+    private PlayerInput _playerInput;
+    public InputAction moveAction;
+
     
     public int maxHealth = 4;
 
@@ -42,6 +47,12 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     
     public void Start()
     {
+        _playerInput = GetComponent<PlayerInput>();
+        
+        /* Instantiated this way to allow more precise
+        control over movement via polling. */
+        moveAction = _playerInput.actions["move"];
+
         CurrentHealth = maxHealth;
         
         maxSpeed = maxWalkingSpeed;
@@ -50,6 +61,7 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         fallState = new PlayerFallState(this);
         idleState = new PlayerIdleState(this);
         currentState = walkingState;
+
     }
 
     protected override void Update()
@@ -93,11 +105,6 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         currentState.Exit();
         currentState = newState;
         newState.Enter();
-    }
-
-    public void OnMove(InputValue value)
-    {
-        currentState?.OnMove(value);
     }
 
     public void OnFire()

@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43f3ff5706414956ae43ceff33c1b2a, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: 1e1519b337c7d42b9b9f2fe11b33bbe5, type: 3}
+  m_Name: T_ThinkYouCan
   m_EditorClassIdentifier: 
-  levelSize: {x: 50, y: 50}
-  scene:
-    m_AssetGUID: 2cda990e2423bbf4892e6590ba056729
-    m_SubObjectName: 
-    m_SubObjectType: 
-  levelType: 1
-  levelLoadStatus: 0
+  dialogue: {fileID: 11400000, guid: 8222f08b27ca84deb84de5e070a0bb93, type: 2}

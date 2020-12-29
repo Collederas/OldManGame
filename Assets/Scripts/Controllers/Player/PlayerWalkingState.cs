@@ -11,7 +11,6 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void Enter()
     {
-        player.Velocity = Vector2.zero;
     }
 
     public override void OnMove(InputValue value)
@@ -26,7 +25,7 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void Update()
     {
-        player.Velocity = inputAcceleration;
+        player.Velocity = player.moveAction.ReadValue<Vector2>();
     }
 
     public override void FixedUpdate()

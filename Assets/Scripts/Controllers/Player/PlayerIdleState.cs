@@ -13,7 +13,7 @@ public class PlayerIdleState : PlayerBaseState
     }
 
     public override void Update()
-    {
+    {        
     }
 
     public override void FixedUpdate()
@@ -26,6 +26,7 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void OnMove(InputValue value)
     {
+        player.ChangeState(player.walkingState);
     }
 
     public override void OnFire()

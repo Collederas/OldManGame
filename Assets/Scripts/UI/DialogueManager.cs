@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -24,13 +25,16 @@ namespace UI
         public Animator animator;
         public TMP_Text displayText;
         public InputAction nextSentence;
+        public Image nextSentenceArrow;
 
         private Queue<string> _sentences;
-
+        private bool _currentSentenceComplete;
+        
         private void Start()
         {
             _sentences = new Queue<string>();
             nextSentence.performed += OnNextSentencePerformed;
+            nextSentenceArrow.gameObject.SetActive(false);
 
             if (animator == null)
                 Debug.LogWarning("Animator dependency is null. Dialogues might not show correctly");
@@ -40,6 +44,8 @@ namespace UI
 
         private void OnNextSentencePerformed(InputAction.CallbackContext context)
         {
+            if(!_currentSentenceComplete)
+                return;
             DisplayNextSentence();
         }
 
@@ -51,7 +57,8 @@ namespace UI
         private void DisplayNextSentence()
         {
             displayText.text = "";
-
+            _currentSentenceComplete = false;
+            
             if (_sentences.Count == 0)
             {
                 EndDialogue();
@@ -73,19 +80,24 @@ namespace UI
             nextSentence.Disable();
             if (animator)
                 animator.SetBool(OpenTextBox, false);
-
+            
+            nextSentenceArrow.gameObject.SetActive(false);
             DialogueEnded?.Invoke();
         }
 
         private IEnumerator TypeSentence(string sentence)
         {
             var seconds = SpeedToSeconds();
-
+            nextSentenceArrow.gameObject.SetActive(false);
+            
             foreach (var letter in sentence.ToCharArray())
             {
                 displayText.text += letter;
                 yield return new WaitForSeconds(seconds);
             }
+
+            _currentSentenceComplete = true;
+            nextSentenceArrow.gameObject.SetActive(true);
         }
 
         public IEnumerator StartDialogueRoutine(Dialogue dialogue)
