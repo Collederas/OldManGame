@@ -13,16 +13,15 @@ public class GameManager : Singleton<GameManager>
     public event Action PlayerSpawned;
     public event Action<int> LivesUpdated;
     public event Action<int> BoostCounterUpdated; 
-
     public event Action<GameState, GameState> GameStateChanged;
+
+    public Animator transitionAnimator;
 
     private static Camera _mainCamera;
 
     public PlayerController player;
     public int playerLives;
     public int startingLevel = 0;
-
-    public GameObject levelTransition;
 
     private int _currentLevelIndex;
     private int _boostsRemaining;
@@ -87,16 +86,20 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void LoadLevel(int index = 0)
-    {
+    {            
+        transitionAnimator.SetBool("Start", true);
         CurrentLevelIndex = index;
-        SceneManager.Instance.LoadLevel(index, levelTransition.GetComponent<Animator>());
+        SceneManager.Instance.LoadLevel(index);
         SceneManager.Instance.LevelLoaded += InitializeLevel;
     }
     
     public void LoadNextLevel()
     {
+        transitionAnimator.SetBool("Start", true);
+        Destroy(_playerController.gameObject);
+        _playerController = null;
         CurrentLevelIndex++;
-        SceneManager.Instance.LoadLevel(CurrentLevelIndex, levelTransition.GetComponent<Animator>());
+        SceneManager.Instance.LoadLevel(CurrentLevelIndex);
     }
     
     public void QuitGame()
@@ -122,6 +125,8 @@ public class GameManager : Singleton<GameManager>
 
     private void InitializeLevel()
     {
+        transitionAnimator.SetBool("Start", false);
+
         var level = SceneManager.Instance.levelManager.levels[CurrentLevelIndex];
         if (level.levelType != Level.LevelType.Gameplay) return;
         UpdateState(GameState.Running);
@@ -184,7 +189,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnPlayerOutOfLives()
     {
-        SceneManager.Instance.LoadLevel(3, levelTransition.GetComponent<Animator>());
+        SceneManager.Instance.LoadLevel(3);
         CurrentLevelIndex = 3;
     }
     

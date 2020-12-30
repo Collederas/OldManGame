@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43f3ff5706414956ae43ceff33c1b2a, type: 3}
   m_Name: Level1
   m_EditorClassIdentifier: 
-  levelSize: {x: 50, y: 50}
+  levelSize: {x: 10, y: 25}
   scene:
     m_AssetGUID: 2cda990e2423bbf4892e6590ba056729
     m_SubObjectName: 

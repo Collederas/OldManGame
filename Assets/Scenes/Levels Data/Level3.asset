@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f43f3ff5706414956ae43ceff33c1b2a, type: 3}
   m_Name: Level3
   m_EditorClassIdentifier: 
-  levelSize: {x: 50, y: 50}
+  levelSize: {x: 15, y: 15}
   scene:
-    m_AssetGUID: 
+    m_AssetGUID: 5b148ce929bbb4cdc9bf54139d33a2ac
     m_SubObjectName: 
     m_SubObjectType: 
-  levelType: 0
+  levelType: 1

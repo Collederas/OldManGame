@@ -1,4 +1,6 @@
-﻿public class Pill : Collectible
+﻿using System;
+
+public class Pill : Collectible
 {
     public int boostAmount;
     private GameManager _gameManager;
@@ -18,5 +20,10 @@
     protected override void Collect(PlayerController playerController)
     {
         _gameManager.BoostsRemaining += boostAmount;
+    }
+
+    private void OnDestroy()
+    {
+        _gameManager.PlayerSpawned -= ReactivateObject;
     }
 }

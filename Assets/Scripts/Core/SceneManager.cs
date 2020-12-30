@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 public class SceneManager : Singleton<SceneManager>
 {
     public LevelManager levelManager;
-    
     public event Action LevelLoaded;
     private bool _loaded = false;
     private AsyncOperationHandle<SceneInstance> _sceneHandle;
@@ -20,14 +19,13 @@ public class SceneManager : Singleton<SceneManager>
         _loaded = false;
         DontDestroyOnLoad(gameObject);
     }
-    public void LoadLevel(int index, Animator transition)
+    public void LoadLevel(int index)
     {
         if (index <= levelManager.levels.Count - 1)
         {
             if (_loaded)
                 UnloadCurrentLevel();
             levelManager.levels[index].scene.LoadSceneAsync(LoadSceneMode.Additive).Completed += OnLevelLoadComplete;
-            transition.SetTrigger("Start");
             return;
         }
 
@@ -42,6 +40,7 @@ public class SceneManager : Singleton<SceneManager>
     private void OnLevelLoadComplete(AsyncOperationHandle<SceneInstance> handle)
     {
         if (handle.Status != AsyncOperationStatus.Succeeded) return;
+
         _loaded = true;
         _sceneHandle = handle;
         LevelLoaded?.Invoke();
