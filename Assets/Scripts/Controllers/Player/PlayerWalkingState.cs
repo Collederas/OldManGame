@@ -20,7 +20,8 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void OnFire()
     {
-        player.ChangeState(player.boostState);
+        if(GameManager.Instance.BoostsRemaining > 0)
+            player.ChangeState(player.boostState);
     }
 
     public override void Update()

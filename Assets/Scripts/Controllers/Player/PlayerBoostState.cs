@@ -12,6 +12,7 @@ public class PlayerBoostState : PlayerBaseState
 
     public override void Enter()
     {
+        GameManager.Instance.BoostsRemaining--;
         _elapsedTime = 0f;
         player.maxSpeed = player.maxBoostingSpeed;
         _entryLayer = player.gameObject.layer;

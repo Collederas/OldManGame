@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8045810684570769326}
   - component: {fileID: 2141622398372614003}
   - component: {fileID: 6210727722245217786}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.024764061, y: -0.026358366}
+  m_Offset: {x: 0.024764061, y: 0.008447647}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -107,5 +107,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9976196, y: 0.9268079}
+  m_Size: {x: 0.9976196, y: 0.85719585}
   m_EdgeRadius: 0

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class LivesCounter : MonoBehaviour
 {
-    public TMP_Text _livesText;
+    public TMP_Text livesText;
     
     public void SetCount(int count)
     {
-        _livesText.text = count.ToString();
+        livesText.text = count.ToString();
     }
 }

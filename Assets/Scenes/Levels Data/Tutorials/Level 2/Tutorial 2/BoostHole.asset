@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b0ca54b89de4deb855a75101534263, type: 3}
+  m_Name: BoostHole
+  m_EditorClassIdentifier: 
+  sentences:
+  - YES! Can you feel the energy flowing through your old decrepit body?
+  - Collecting pills will give you a limited amount of boosts.
+  - A boost allows you to temporarily sprint in the direciton you are walking in.
+  - And should be enough to allow you to pass over narrow gaps like the one ahead.
+  - Give it a try!
+  - Walk towards the hole and, right before the edge, press SPACEBAR to boost.
+  - Good luck! See you on the other side.
+  - ... if you can make it.

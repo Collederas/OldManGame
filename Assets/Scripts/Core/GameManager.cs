@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     }
     public event Action PlayerSpawned;
     public event Action<int> LivesUpdated;
+    public event Action<int> BoostCounterUpdated; 
+
     public event Action<GameState, GameState> GameStateChanged;
 
     private static Camera _mainCamera;
@@ -23,10 +25,13 @@ public class GameManager : Singleton<GameManager>
     public GameObject levelTransition;
 
     private int _currentLevelIndex;
+    private int _boostsRemaining;
     private PlayerController _playerController;
     private int _currentPlayerLives;
     private GameObject _playerStart;
-
+    
+    // ###### DEBUG ###### //
+    public bool loadLevels = true;
     public GameState CurrentGameState { get; private set; } = GameState.Pregame;
 
     public int CurrentLevelIndex
@@ -47,6 +52,17 @@ public class GameManager : Singleton<GameManager>
             LivesUpdated?.Invoke(value);
         }
     }
+    
+    public int BoostsRemaining
+    {
+        get => _boostsRemaining;
+        set
+        {
+            print("setting to " + value);
+            _boostsRemaining = value;
+            BoostCounterUpdated?.Invoke(value);
+        }
+    }
 
     protected override void Awake()
     {
@@ -58,15 +74,29 @@ public class GameManager : Singleton<GameManager>
     {
         DontDestroyOnLoad(gameObject);
         UpdateState(GameState.Pregame);
-        LoadLevel(startingLevel);
+        CurrentPlayerLives = playerLives;
+        
+        //##### DEBUG #####
+        if(loadLevels)
+            LoadLevel(startingLevel);
+        else
+        {
+            CurrentLevelIndex = startingLevel;
+            InitializeLevel();
+        }
     }
 
     public void LoadLevel(int index = 0)
     {
-        CurrentPlayerLives = playerLives;
         CurrentLevelIndex = index;
         SceneManager.Instance.LoadLevel(index, levelTransition.GetComponent<Animator>());
         SceneManager.Instance.LevelLoaded += InitializeLevel;
+    }
+    
+    public void LoadNextLevel()
+    {
+        CurrentLevelIndex++;
+        SceneManager.Instance.LoadLevel(CurrentLevelIndex, levelTransition.GetComponent<Animator>());
     }
     
     public void QuitGame()
@@ -120,6 +150,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator SpawnPlayer(bool delaySpawn = true)
     {
+        print("Player start");
         _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
 
         if (!_playerStart)

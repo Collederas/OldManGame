@@ -26,8 +26,9 @@ public class TutorialTrigger : MonoBehaviour
             action.Init();
             yield return StartCoroutine(action.Execute());
         }
+        
         _playerController.ActivateInput();
-
+        
         Destroy(gameObject);
     }
 }

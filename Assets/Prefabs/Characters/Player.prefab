@@ -233,7 +233,7 @@ MonoBehaviour:
   boostDuration: 0.1
   boostDistance: 2
   maxBoostingSpeed: 20
-  maxWalkingSpeed: 2
+  maxWalkingSpeed: 20
   fallingSpeed: 2
 --- !u!114 &7269023912058156689
 MonoBehaviour:
