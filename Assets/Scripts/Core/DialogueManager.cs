@@ -18,6 +18,8 @@ namespace UI
 
     public class DialogueManager : MonoBehaviour
     {
+        public event Action DialogueEnded;
+
         private static readonly int OpenTextBox = Animator.StringToHash("IsOpen");
 
         public DialogueSpeed dialogueSpeed = DialogueSpeed.Medium;
@@ -39,9 +41,7 @@ namespace UI
             if (animator == null)
                 Debug.LogWarning("Animator dependency is null. Dialogues might not show correctly");
         }
-
-        public event Action DialogueEnded;
-
+        
         private void OnNextSentencePerformed(InputAction.CallbackContext context)
         {
             if(!_currentSentenceComplete)

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -57,7 +56,6 @@ public class GameManager : Singleton<GameManager>
         get => _boostsRemaining;
         set
         {
-            print("setting to " + value);
             _boostsRemaining = value;
             BoostCounterUpdated?.Invoke(value);
         }
@@ -129,7 +127,8 @@ public class GameManager : Singleton<GameManager>
 
         var level = SceneManager.Instance.levelManager.levels[CurrentLevelIndex];
         if (level.levelType != Level.LevelType.Gameplay) return;
-        UpdateState(GameState.Running);
+        if(CurrentGameState != GameState.Running)
+            UpdateState(GameState.Running);
         if (_playerController) return;
         StartCoroutine(SpawnPlayer(false));
     }

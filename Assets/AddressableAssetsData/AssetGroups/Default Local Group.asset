@@ -53,6 +53,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: 5d56ffb645dd3423f9a91c7364498cf1
+    m_Address: Assets/Scenes/Level4.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ccd13b6acc0034a1e92065b7fc92c5cc, type: 2}
   m_SchemaSet:
