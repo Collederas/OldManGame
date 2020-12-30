@@ -13,6 +13,7 @@ public class TutorialTrigger : MonoBehaviour
         if (!other.CompareTag("Player")) return;
 
         _playerController = other.GetComponent<PlayerController>();
+        _playerController.gameObject.layer = LayerMask.NameToLayer("Invincible");
 
         StartCoroutine(StartActionSequence());
     }
@@ -28,7 +29,8 @@ public class TutorialTrigger : MonoBehaviour
         }
         
         _playerController.ActivateInput();
-        
+        _playerController.gameObject.layer = LayerMask.NameToLayer("Damageable");
+
         Destroy(gameObject);
     }
 }

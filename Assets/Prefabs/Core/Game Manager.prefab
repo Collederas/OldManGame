@@ -43,8 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f53fb1de24fe248c680f7745e6f618b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionAnimator: {fileID: 0}
   player: {fileID: 7269023912058156703, guid: d7134c909ab6b44a1af0876db767b801, type: 3}
-  playerLives: 1
-  startingLevel: 0
-  levelTransition: {fileID: 7182332727607842417, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-    type: 3}
+  playerLives: 5
+  startingLevel: 1
+  loadLevels: 1

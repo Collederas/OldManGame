@@ -15,11 +15,11 @@
 
     public void Start()
     {
-        gameObject.SetActive(false);
         GameManager.Instance.GameStateChanged += OnGameStateChanged;
         GameManager.Instance.PlayerSpawned += OnPlayerSpawned;
         GameManager.Instance.LivesUpdated += OnUpdateLivesCount;
         GameManager.Instance.BoostCounterUpdated += OnUpdateBoostCount;
+        gameObject.SetActive(false);
     }
 
     private void OnPlayerSpawned()

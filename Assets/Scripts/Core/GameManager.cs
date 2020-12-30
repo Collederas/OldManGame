@@ -155,9 +155,8 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator SpawnPlayer(bool delaySpawn = true)
     {
-        print("Player start");
         _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
-
+        
         if (!_playerStart)
         {
             Debug.LogWarning("[GameManager] No Player Spawn Point defined. Creating default at (0;0)");

@@ -123,23 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &514403658 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 110421282042311807, guid: 0fe7c67062d1a46d19e9cb8262b0412b,
-    type: 3}
-  m_PrefabInstance: {fileID: 924488404004375198}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &594841421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7182332727607842417, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1595232134}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &594841422 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 5365120344648747194, guid: e4feb486ee1ea470c8d044d7f1e39de2,
+  m_CorrespondingSourceObject: {fileID: 5089293843588828578, guid: 0fe7c67062d1a46d19e9cb8262b0412b,
     type: 3}
-  m_PrefabInstance: {fileID: 1595232134}
+  m_PrefabInstance: {fileID: 924488404004375198}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1472460878
 PrefabInstance:
@@ -153,21 +141,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 4260262129209599859, guid: edc7fb182878448f1a7ccf27173b82cf,
-        type: 3}
-      propertyPath: playerLives
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260262129209599859, guid: edc7fb182878448f1a7ccf27173b82cf,
-        type: 3}
-      propertyPath: startingLevel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260262129209599859, guid: edc7fb182878448f1a7ccf27173b82cf,
-        type: 3}
-      propertyPath: levelTransition
-      value: 
-      objectReference: {fileID: 594841421}
     - target: {fileID: 4260262129209599859, guid: edc7fb182878448f1a7ccf27173b82cf,
         type: 3}
       propertyPath: transitionAnimator
@@ -230,125 +203,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edc7fb182878448f1a7ccf27173b82cf, type: 3}
---- !u!1001 &1595232134
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 514403658}
-    m_Modifications:
-    - target: {fileID: 7182332727607842417, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_Name
-      value: Level Transition Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7182332727607842422, guid: e4feb486ee1ea470c8d044d7f1e39de2,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e4feb486ee1ea470c8d044d7f1e39de2, type: 3}
 --- !u!1001 &2064515508
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -614,10 +468,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scene Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 7074537643124790227, guid: 0fe7c67062d1a46d19e9cb8262b0412b,
-        type: 3}
-      propertyPath: transitionAnimator
-      value: 
-      objectReference: {fileID: 594841422}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fe7c67062d1a46d19e9cb8262b0412b, type: 3}

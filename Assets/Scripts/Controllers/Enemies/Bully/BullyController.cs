@@ -8,16 +8,9 @@
 
     private void Awake()
     {
-        GameManager.Instance.PlayerSpawned += OnPlayerSpawned;
         idleState = new BullyIdleState(this);
         attackState = new BullyAttackState(this);
         currentState = idleState;
-    }
-
-    private void OnPlayerSpawned()
-    {
-        if (currentState == null)
-            currentState = new BullyIdleState(this);
     }
 
     private void OnFOVTagDetected()
