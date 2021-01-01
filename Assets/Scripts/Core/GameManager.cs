@@ -126,6 +126,7 @@ public class GameManager : Singleton<GameManager>
         transitionAnimator.SetBool("Start", false);
 
         var level = SceneManager.Instance.levelManager.levels[CurrentLevelIndex];
+        print(level);
         if (level.levelType != Level.LevelType.Gameplay) return;
         if(CurrentGameState != GameState.Running)
             UpdateState(GameState.Running);
@@ -167,7 +168,7 @@ public class GameManager : Singleton<GameManager>
         if (!_playerController)
         {
             if (delaySpawn)
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(1);
             var spawnPointPosition = _playerStart.transform.position;
             _playerController = Instantiate(player, new Vector2(spawnPointPosition.x, spawnPointPosition.y),
                 Quaternion.identity);

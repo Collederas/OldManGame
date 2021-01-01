@@ -17,10 +17,20 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4603833873458221128, guid: 2b22b4c1c988f48af8707a9c5563d23b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5144861223571756190, guid: 2b22b4c1c988f48af8707a9c5563d23b,
         type: 3}
       propertyPath: m_FlipX
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5144861223571756190, guid: 2b22b4c1c988f48af8707a9c5563d23b,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8523059936711319092, guid: 2b22b4c1c988f48af8707a9c5563d23b,
         type: 3}
@@ -30,12 +40,12 @@ PrefabInstance:
     - target: {fileID: 8523059936711319092, guid: 2b22b4c1c988f48af8707a9c5563d23b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.6535625
+      value: 6.085641
       objectReference: {fileID: 0}
     - target: {fileID: 8523059936711319092, guid: 2b22b4c1c988f48af8707a9c5563d23b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.83
+      value: 9.111933
       objectReference: {fileID: 0}
     - target: {fileID: 8523059936711319092, guid: 2b22b4c1c988f48af8707a9c5563d23b,
         type: 3}
@@ -80,7 +90,7 @@ PrefabInstance:
     - target: {fileID: 8789381499402481042, guid: 2b22b4c1c988f48af8707a9c5563d23b,
         type: 3}
       propertyPath: m_Name
-      value: Street Lamp (9)
+      value: Street Lamp L
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b22b4c1c988f48af8707a9c5563d23b, type: 3}

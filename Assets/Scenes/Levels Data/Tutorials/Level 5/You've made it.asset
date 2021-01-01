@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f43f3ff5706414956ae43ceff33c1b2a, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: f4b0ca54b89de4deb855a75101534263, type: 3}
+  m_Name: You've made it
   m_EditorClassIdentifier: 
-  levelSize: {x: 8, y: 10}
-  scene:
-    m_AssetGUID: 2cda990e2423bbf4892e6590ba056729
-    m_SubObjectName: 
-    m_SubObjectType: 
-  levelType: 1
+  sentences:
+  - Look, over there!

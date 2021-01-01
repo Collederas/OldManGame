@@ -148,7 +148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -5169716748881028953, guid: 8750e5935603a400094f5fe64539a5ab,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -231,7 +231,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
   maxHealth: 4
   boostDuration: 0.1
-  boostDistance: 2
+  boostDistance: 2.5
   maxBoostingSpeed: 20
   maxWalkingSpeed: 20
   fallingSpeed: 2

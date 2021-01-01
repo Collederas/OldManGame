@@ -5,25 +5,30 @@ public class DoggoRandomMoveState : DoggoBaseState
     public DoggoRandomMoveState(DoggoController doggo) : base(doggo)
     {
     }
-    private Vector2 _moveTo;
+    public Vector2 moveTo;
     private float _elapsedTime;
+
+    public void CalculateNewDestination()
+    {
+        moveTo = (Vector2)doggo.transform.position + Random.insideUnitCircle.normalized * Random.Range(2,5);
+        _elapsedTime = 0f;
+    }
     
     public override void Enter()
     {
-        _moveTo = (Vector2)doggo.transform.position + Random.insideUnitCircle.normalized * Random.Range(2,5);
-        _elapsedTime = 0f;
+        CalculateNewDestination();
     }
 
     public override void Update()
     {
         _elapsedTime += Time.fixedDeltaTime;
-        if (Vector2.Distance(doggo.transform.position, _moveTo) <= 0.1f || _elapsedTime > doggo.maxRandomMoveTime)
+        if (Vector2.Distance(doggo.transform.position, moveTo) <= 0.1f || _elapsedTime > doggo.maxRandomMoveTime)
         {
             doggo.ChangeState(doggo.idleState);
         }
         else
         {
-            doggo.Velocity = (_moveTo - (Vector2) doggo.transform.position) * doggo.maxSpeed;
+            doggo.Velocity = (moveTo - (Vector2) doggo.transform.position) * doggo.maxSpeed;
         }
     }
 

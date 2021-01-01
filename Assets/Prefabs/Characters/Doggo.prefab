@@ -388,7 +388,6 @@ MonoBehaviour:
   fallingAudioClip: {fileID: 8300000, guid: dd33a44829e7d4fa4ad2a349d9123ba1, type: 3}
   fallingSpeed: 2
   frozen: 0
-  target: {fileID: 0}
   maxRandomMoveTime: 3
 --- !u!114 &7537880822705737430
 MonoBehaviour:
@@ -436,7 +435,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.029310942, y: 0.093639135}
+  m_Offset: {x: -0.027179956, y: -0.070408165}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -447,7 +446,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.3073854, y: 1.1823335}
+  m_Size: {x: 1.1340852, y: 0.85423887}
   m_EdgeRadius: 0
 --- !u!82 &1266151274
 AudioSource:

@@ -16,6 +16,10 @@ public class T_MoveCamera : TutorialAction
     private Camera _camera;
     private FollowCamera _cameraScript;
     private Vector3 _destination;
+    
+    // Potential target in the scene. If it exists, camera will
+    // reach this object.
+    private GameObject _maybeTarget;
 
     public override void Init()
     {
