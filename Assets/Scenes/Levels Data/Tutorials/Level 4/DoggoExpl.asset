@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: DoggoExpl
   m_EditorClassIdentifier: 
   sentences:
-  - They are not really dangerous per se but if they see you they will chase you
-    till the end of time.
-  - You're quite feeble so they will push you all over the place!
-  - Luckily they are quite stupid and would follow you litterelly to their own death.
-  - Ideally you should get rid of them, no matter how.
-  - ' If you really can''t, then try to distance them circling around some obstacle.'
+  - They are not dangerous but if they see you they will chase you till the end of
+    time.
+  - You're quite thin so they will push you all over the place!
+  - Luckily they are quite stupid and would follow you literally to their own death.
+  - Ideally you should get rid of them but if you  can't, try at least to distance
+    them circling around some obstacle.
   - If you disappear from their sight long enough they will eventually let go.

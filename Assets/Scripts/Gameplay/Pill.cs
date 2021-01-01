@@ -13,7 +13,7 @@ public class Pill : Collectible
 
     private void ReactivateObject()
     {
-        if (!isActive && _gameManager.BoostsRemaining <= 0)
+        if (!isActive && _gameManager.BoostsRemaining <= 1)
             SetObjectActive(true);
     }
 
