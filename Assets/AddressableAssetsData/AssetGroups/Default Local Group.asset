@@ -65,6 +65,18 @@ MonoBehaviour:
     m_SerializedLabels: []
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
+  - m_GUID: d84dbe3f66e074db8b1a648ae657e07d
+    m_Address: Assets/Scenes/End.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
+  - m_GUID: e50b0f7bb5b604f96b4b25f03a2ff6e5
+    m_Address: Assets/Scenes/Intro.unity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    m_MainAsset: {fileID: 0}
+    m_TargetAsset: {fileID: 0}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ccd13b6acc0034a1e92065b7fc92c5cc, type: 2}
   m_SchemaSet:

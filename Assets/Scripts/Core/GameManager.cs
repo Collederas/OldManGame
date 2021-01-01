@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     {
         Pregame,
         Running,
+        Postgame
     }
     public event Action PlayerSpawned;
     public event Action<int> LivesUpdated;
@@ -94,8 +95,11 @@ public class GameManager : Singleton<GameManager>
     public void LoadNextLevel()
     {
         transitionAnimator.SetBool("Start", true);
-        Destroy(_playerController.gameObject);
-        _playerController = null;
+        if (_playerController)
+        {
+            Destroy(_playerController.gameObject);
+            _playerController = null;   
+        }
         CurrentLevelIndex++;
         SceneManager.Instance.LoadLevel(CurrentLevelIndex);
     }
@@ -126,7 +130,6 @@ public class GameManager : Singleton<GameManager>
         transitionAnimator.SetBool("Start", false);
 
         var level = SceneManager.Instance.levelManager.levels[CurrentLevelIndex];
-        print(level);
         if (level.levelType != Level.LevelType.Gameplay) return;
         if(CurrentGameState != GameState.Running)
             UpdateState(GameState.Running);
@@ -188,8 +191,8 @@ public class GameManager : Singleton<GameManager>
 
     private void OnPlayerOutOfLives()
     {
-        SceneManager.Instance.LoadLevel(3);
-        CurrentLevelIndex = 3;
+        SceneManager.Instance.LoadLevel(9);
+        CurrentLevelIndex = 9;
     }
     
     private void OnPlayerDead()

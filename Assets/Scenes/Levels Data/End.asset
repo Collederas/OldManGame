@@ -9,9 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4b0ca54b89de4deb855a75101534263, type: 3}
-  m_Name: ThinkYouCan
+  m_Script: {fileID: 11500000, guid: f43f3ff5706414956ae43ceff33c1b2a, type: 3}
+  m_Name: End
   m_EditorClassIdentifier: 
-  sentences:
-  - Think you can do it?
-  - Now, GO!
+  levelSize: {x: 0, y: 0}
+  scene:
+    m_AssetGUID: d84dbe3f66e074db8b1a648ae657e07d
+    m_SubObjectName: 
+    m_SubObjectType: 
+  levelType: 0

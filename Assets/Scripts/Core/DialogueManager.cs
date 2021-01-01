@@ -53,53 +53,7 @@ namespace UI
         {
             StartCoroutine(StartDialogueRoutine(dialogue));
         }
-
-        private void DisplayNextSentence()
-        {
-            displayText.text = "";
-            _currentSentenceComplete = false;
-            
-            if (_sentences.Count == 0)
-            {
-                EndDialogue();
-                return;
-            }
-
-            var displaySentence = _sentences.Dequeue();
-            StopAllCoroutines();
-            StartCoroutine(TypeSentence(displaySentence));
-        }
-
-        private float SpeedToSeconds()
-        {
-            return 1 / (float) dialogueSpeed;
-        }
-
-        private void EndDialogue()
-        {
-            nextSentence.Disable();
-            if (animator)
-                animator.SetBool(OpenTextBox, false);
-            
-            nextSentenceArrow.gameObject.SetActive(false);
-            DialogueEnded?.Invoke();
-        }
-
-        private IEnumerator TypeSentence(string sentence)
-        {
-            var seconds = SpeedToSeconds();
-            nextSentenceArrow.gameObject.SetActive(false);
-            
-            foreach (var letter in sentence.ToCharArray())
-            {
-                displayText.text += letter;
-                yield return new WaitForSeconds(seconds);
-            }
-
-            _currentSentenceComplete = true;
-            nextSentenceArrow.gameObject.SetActive(true);
-        }
-
+        
         public IEnumerator StartDialogueRoutine(Dialogue dialogue)
         {
             displayText.text = "";
@@ -116,11 +70,58 @@ namespace UI
             DisplayNextSentence();
         }
 
+        private void DisplayNextSentence()
+        {
+            displayText.text = "";
+            _currentSentenceComplete = false;
+            
+            if (_sentences.Count == 0)
+            {
+                EndDialogue();
+                return;
+            }
+
+            var displaySentence = _sentences.Dequeue();
+            StopAllCoroutines();
+            StartCoroutine(TypeSentence(displaySentence));
+        }
+        
+        private IEnumerator TypeSentence(string sentence)
+        {
+            var seconds = SpeedToSeconds();
+            nextSentenceArrow.gameObject.SetActive(false);
+            
+            foreach (var letter in sentence.ToCharArray())
+            {
+                displayText.text += letter;
+                yield return new WaitForSeconds(seconds);
+            }
+
+            _currentSentenceComplete = true;
+            nextSentenceArrow.gameObject.SetActive(true);
+        }
+
+        private void EndDialogue()
+        {
+            nextSentence.Disable();
+            if (animator)
+                animator.SetBool(OpenTextBox, false);
+            
+            nextSentenceArrow.gameObject.SetActive(false);
+            DialogueEnded?.Invoke();
+        }
+
         private IEnumerator DisplayTextBox()
         {
             if (animator)
                 animator.SetBool(OpenTextBox, true);
             yield return new WaitForSeconds(0.7f);
         }
+        
+        private float SpeedToSeconds()
+        {
+            return 1 / (float) dialogueSpeed;
+        }
+
     }
 }
