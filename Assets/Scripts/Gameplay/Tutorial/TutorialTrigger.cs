@@ -8,6 +8,10 @@ public class TutorialTrigger : MonoBehaviour
     public List<TutorialAction> tutorialActions;
     private PlayerController _playerController;
 
+    /* Ugly but quick solution.
+       Set the Frozen flag on these enemy controllers during tutorial. */
+    public EnemyStateMachineController[] enemiesToFreeze;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Player")) return;
@@ -21,6 +25,10 @@ public class TutorialTrigger : MonoBehaviour
     private IEnumerator StartActionSequence()
     {
         _playerController.DeactivateInput();
+        foreach (var enemy in enemiesToFreeze)
+        {
+            enemy.frozen = true;
+        }
 
         foreach (var action in tutorialActions)
         {
@@ -30,7 +38,11 @@ public class TutorialTrigger : MonoBehaviour
         
         _playerController.ActivateInput();
         _playerController.gameObject.layer = LayerMask.NameToLayer("Damageable");
-
+        foreach (var enemy in enemiesToFreeze)
+        {
+            enemy.frozen = false;
+        }
+        
         Destroy(gameObject);
     }
 }

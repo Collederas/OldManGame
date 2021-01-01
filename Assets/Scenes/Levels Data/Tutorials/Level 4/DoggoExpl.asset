@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b0ca54b89de4deb855a75101534263, type: 3}
+  m_Name: DoggoExpl
+  m_EditorClassIdentifier: 
+  sentences:
+  - They are not really dangerous per se but if they see you they will chase you
+    till the end of time.
+  - You're quite feeble so they will push you all over the place!
+  - Luckily they are quite stupid and would follow you litterelly to their own death.
+  - Ideally you should get rid of them, no matter how.
+  - ' If you really can''t, then try to distance them circling around some obstacle.'
+  - If you disappear from their sight long enough they will eventually let go.
+  - Good luck ahead.

@@ -40,6 +40,7 @@ public class AudioManager : Singleton<AudioManager>
         if (_isAudioSourcePlaying)
         {
             _audioSource.Pause();
+            _audioText.text = "Audio: OFF";
             _isAudioSourcePlaying = false;
             if (!_UICoroutineInProgress)
                StartCoroutine(DisplayAudioStatus());
@@ -47,6 +48,7 @@ public class AudioManager : Singleton<AudioManager>
         else
         {
             _audioSource.UnPause();
+            _audioText.text = "Audio: ON";
             _isAudioSourcePlaying = true;
             if (!_UICoroutineInProgress)
                 StartCoroutine(DisplayAudioStatus());
@@ -63,13 +65,6 @@ public class AudioManager : Singleton<AudioManager>
  
             _audioText.color = startColor;
             
-            if (_isAudioSourcePlaying)
-                _audioText.text = "Audio: ON";
-            else
-            {
-                _audioText.text = "Audio: OFF";
-            }
-     
             while (t < 1)
             {
                 _audioText.color = Color.Lerp(startColor, endColor, t);

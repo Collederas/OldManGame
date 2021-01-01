@@ -144,7 +144,7 @@ PrefabInstance:
     - target: {fileID: 4260262129209599859, guid: edc7fb182878448f1a7ccf27173b82cf,
         type: 3}
       propertyPath: startingLevel
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4260262129209599859, guid: edc7fb182878448f1a7ccf27173b82cf,
         type: 3}
@@ -284,6 +284,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 757698988179174779, guid: d2c089f60b8184691a23baa7b1abf0fd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 158.40039
+      objectReference: {fileID: 0}
     - target: {fileID: 8726666038322717505, guid: d2c089f60b8184691a23baa7b1abf0fd,
         type: 3}
       propertyPath: m_Pivot.x
@@ -487,6 +492,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1851626529307317292, guid: 6a5564a0d98464483b9a83ed4f680f80,
+        type: 3}
+      propertyPath: gameClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b7b10fd21853c4b089748a80b08a3be6, type: 3}
     - target: {fileID: 1851626529307317293, guid: 6a5564a0d98464483b9a83ed4f680f80,
         type: 3}
       propertyPath: Loop

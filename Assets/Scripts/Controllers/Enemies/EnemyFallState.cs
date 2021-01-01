@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class EnemyFallState : EnemyBaseState
 {
@@ -14,6 +15,9 @@ public class EnemyFallState : EnemyBaseState
     public override void Enter()
     {
         elapsedTime = 0f;
+        var fov = enemy.GetComponentInChildren<EnemyFOV>();
+        if (fov)
+            fov.gameObject.SetActive(false);
         enemy.Velocity = Vector2.zero;
     }
 
@@ -33,7 +37,7 @@ public class EnemyFallState : EnemyBaseState
         }
         else
         {
-            enemy.Die();
+            Object.Destroy(enemy.gameObject);
         }
     }
 

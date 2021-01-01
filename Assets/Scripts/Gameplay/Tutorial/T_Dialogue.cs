@@ -9,11 +9,10 @@ public class T_Dialogue : TutorialAction
     private DialogueManager _dialogueManager;
 
     private bool _dialogueRunning;
-    private PlayerController _player;
 
     public override void Init()
     {
-        _player = GameManager.Instance.GetPlayerController();
+        GameManager.Instance.GetPlayerController();
         _dialogueManager = FindObjectOfType<DialogueManager>();
         _dialogueRunning = true;
     }

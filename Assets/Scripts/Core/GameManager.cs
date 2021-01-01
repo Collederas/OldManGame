@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>
     public enum GameState
     {
         Pregame,
-        Running
+        Running,
     }
     public event Action PlayerSpawned;
     public event Action<int> LivesUpdated;
@@ -105,7 +105,7 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
-    private void UpdateState(GameState newState)
+    public void UpdateState(GameState newState)
     {
         var previousState = CurrentGameState;
         CurrentGameState = newState;
