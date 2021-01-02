@@ -4,17 +4,11 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(HealthBar))]
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerController : MovingObjectController, IDamageable, IKillable
+public class PlayerController : MovingObjectController, IDamageable
 {
-    public event Action PlayerDead;
-    public event Action<int> UpdateHealthBar;
-
     private PlayerInput _playerInput;
     public InputAction moveAction;
-
     
-    public int maxHealth = 4;
-
     [Range(0.0f, 5.0f)] public float boostDuration = 1f;
 
     [Range(0.0f, 10.0f)] public float boostDistance = 2f;
@@ -34,16 +28,6 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     public PlayerWalkingState walkingState;
 
     public Vector2 FallTargetPosition { get; set; }
-
-    public int CurrentHealth
-    {
-        get => _currentHealth;
-        set
-        {
-            _currentHealth = value;
-            UpdateHealthBar?.Invoke(value);
-        }
-    }
     
     public void Start()
     {
@@ -52,8 +36,6 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
         /* Instantiated this way to allow more precise
         control over movement via polling. */
         moveAction = _playerInput.actions["move"];
-
-        CurrentHealth = maxHealth;
         
         maxSpeed = maxWalkingSpeed;
         walkingState = new PlayerWalkingState(this);
@@ -67,7 +49,6 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
     protected override void Update()
     {
         currentState.Update();
-        if (CurrentHealth <= 0) Die();
         base.Update();
     }
 
@@ -79,15 +60,9 @@ public class PlayerController : MovingObjectController, IDamageable, IKillable
 
     public void TakeDamage(int damageAmount)
     {
-        CurrentHealth -= damageAmount;
+        GameManager.Instance.CurrentPlayerHealth -= damageAmount;
     }
-
-    public void Die()
-    {
-        PlayerDead?.Invoke();
-        Destroy(gameObject);
-    }
-
+    
     public void DeactivateInput()
     {
         GetComponent<PlayerInput>().DeactivateInput();

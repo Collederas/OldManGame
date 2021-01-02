@@ -6,7 +6,9 @@ using UnityEngine;
 public class TutorialTrigger : MonoBehaviour
 {
     public List<TutorialAction> tutorialActions;
+    public string playerPrefKey;
     private PlayerController _playerController;
+
 
     /* Ugly but quick solution.
        Set the Frozen flag on these enemy controllers during tutorial. */
@@ -14,12 +16,14 @@ public class TutorialTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (PlayerPrefs.GetInt(playerPrefKey) == 1) return;
         if (!other.CompareTag("Player")) return;
 
         _playerController = other.GetComponent<PlayerController>();
         _playerController.gameObject.layer = LayerMask.NameToLayer("Invincible");
 
         StartCoroutine(StartActionSequence());
+        PlayerPrefs.SetInt(playerPrefKey, 1);
     }
 
     private IEnumerator StartActionSequence()

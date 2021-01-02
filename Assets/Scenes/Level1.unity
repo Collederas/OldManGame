@@ -559,7 +559,7 @@ PrefabInstance:
     - target: {fileID: 7796707888026316117, guid: 46e50beabfeb446a6aecc4c08d2c3767,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.63
+      value: -1.2
       objectReference: {fileID: 0}
     - target: {fileID: 7796707888026316117, guid: 46e50beabfeb446a6aecc4c08d2c3767,
         type: 3}
@@ -3077,6 +3077,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 59a7a51f7469f42dca0af33bbfbcea71, type: 2}
   - {fileID: 11400000, guid: 632e7b521547f4c1bb696ae20677e63f, type: 2}
   - {fileID: 11400000, guid: 2f95e03d9901b4fbfbff29c0ea476bef, type: 2}
+  playerPrefKey: 2
   enemiesToFreeze: []
 --- !u!61 &1038938061
 BoxCollider2D:
@@ -3575,6 +3576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialActions:
   - {fileID: 11400000, guid: 8188ebc6e826843bb8ba23cfc05da2e7, type: 2}
+  playerPrefKey: 3
   enemiesToFreeze: []
 --- !u!61 &1185953208
 BoxCollider2D:
@@ -5000,6 +5002,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3b429757a3bf46d1a9a2189f9753451, type: 2}
   - {fileID: 11400000, guid: 191bd4054c1ad4b1e949139350d98e2a, type: 2}
   - {fileID: 11400000, guid: 0b9752c04ece041a590c39ae4ac92713, type: 2}
+  playerPrefKey: 1
   enemiesToFreeze: []
 --- !u!61 &1545379179
 BoxCollider2D:

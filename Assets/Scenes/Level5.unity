@@ -2209,6 +2209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8108648686492426828, guid: f2e32adce35954954b50dc1b3cd52ca1,
         type: 3}
+      propertyPath: playerPrefKey
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108648686492426828, guid: f2e32adce35954954b50dc1b3cd52ca1,
+        type: 3}
       propertyPath: enemiesToFreeze.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -2876,12 +2881,12 @@ PrefabInstance:
     - target: {fileID: 7796707888026316117, guid: 46e50beabfeb446a6aecc4c08d2c3767,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.4
+      value: -19.34
       objectReference: {fileID: 0}
     - target: {fileID: 7796707888026316117, guid: 46e50beabfeb446a6aecc4c08d2c3767,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.7
+      value: -5.27
       objectReference: {fileID: 0}
     - target: {fileID: 7796707888026316117, guid: 46e50beabfeb446a6aecc4c08d2c3767,
         type: 3}

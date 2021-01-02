@@ -11,6 +11,8 @@ public class GameManager : Singleton<GameManager>
         Postgame
     }
     public event Action PlayerSpawned;
+    public event Action<int> UpdateHealthBar;
+
     public event Action<int> LivesUpdated;
     public event Action<int> BoostCounterUpdated; 
     public event Action<GameState, GameState> GameStateChanged;
@@ -21,11 +23,15 @@ public class GameManager : Singleton<GameManager>
 
     public PlayerController player;
     public int playerLives;
+    public int playerHealth = 4;
+
     public int startingLevel = 0;
 
     private int _currentLevelIndex;
     private int _boostsRemaining;
     private PlayerController _playerController;
+    private int _currentPlayerHealth;
+
     private int _currentPlayerLives;
     private GameObject _playerStart;
     
@@ -42,6 +48,21 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public int CurrentPlayerHealth
+    {
+        get => _currentPlayerHealth;
+        set
+        {
+            UpdateHealthBar?.Invoke(value);
+
+            _currentPlayerHealth = value;
+            if (_currentPlayerHealth <= 0)
+            {
+                OnPlayerDead();
+            }
+        }
+    }
+    
     public int CurrentPlayerLives
     {
         get => _currentPlayerLives;
@@ -73,6 +94,7 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
         UpdateState(GameState.Pregame);
         CurrentPlayerLives = playerLives;
+        CurrentPlayerHealth = playerHealth;
         
         //##### DEBUG #####
         if(loadLevels)
@@ -175,7 +197,7 @@ public class GameManager : Singleton<GameManager>
             var spawnPointPosition = _playerStart.transform.position;
             _playerController = Instantiate(player, new Vector2(spawnPointPosition.x, spawnPointPosition.y),
                 Quaternion.identity);
-            _playerController.PlayerDead += OnPlayerDead;
+            CurrentPlayerHealth = playerHealth;
             PlayerSpawned?.Invoke();
 
             // Cheap way to avoid sending a message internally to this same class. Meh.
@@ -191,14 +213,15 @@ public class GameManager : Singleton<GameManager>
 
     private void OnPlayerOutOfLives()
     {
-        SceneManager.Instance.LoadLevel(9);
-        CurrentLevelIndex = 9;
+        SceneManager.Instance.LoadLevel(8);
+        CurrentLevelIndex = 8;
     }
     
     private void OnPlayerDead()
     {
         CurrentPlayerLives--;
 
+        Destroy(_playerController.gameObject);
         _playerController = null;
         if (CurrentPlayerLives == 0)
         {

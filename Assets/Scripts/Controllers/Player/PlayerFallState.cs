@@ -40,7 +40,7 @@ public class PlayerFallState : PlayerBaseState
         }
         else
         {
-            player.CurrentHealth = 0;
+            GameManager.Instance.CurrentPlayerHealth = 0;
         }
     }
 

@@ -24,7 +24,7 @@
 
     private void OnPlayerSpawned()
     {
-        GameManager.Instance.GetPlayerController().UpdateHealthBar += OnUpdateHealthBar;
+        GameManager.Instance.UpdateHealthBar += OnUpdateHealthBar;
     }
     
     private void OnGameStateChanged(GameManager.GameState previousState, GameManager.GameState currentState)
