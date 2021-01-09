@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7269023912058156689}
   - component: {fileID: 7269023912058156694}
   - component: {fileID: 7269023912058156690}
-  - component: {fileID: 8720310059551194635}
+  - component: {fileID: 8593867421204786952}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -229,7 +229,6 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-  maxHealth: 4
   boostDuration: 0.1
   boostDistance: 2.5
   maxBoostingSpeed: 20
@@ -297,7 +296,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8720310059551194635
+--- !u!114 &8593867421204786952
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,6 +305,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7269023912058156695}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485cbb1f62f43404f9f75b2a67f35214, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e72fefc7fe1a44aa92729e2428b6d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: {fileID: 11400000, guid: 499d294e86353470e890f4a756af131e, type: 2}
+  startingHP: {fileID: 11400000, guid: 5d0f4672eb6be4c8082766fad7f2fa05, type: 2}

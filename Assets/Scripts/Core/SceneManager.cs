@@ -40,7 +40,6 @@ public class SceneManager : Singleton<SceneManager>
     private void OnLevelLoadComplete(AsyncOperationHandle<SceneInstance> handle)
     {
         if (handle.Status != AsyncOperationStatus.Succeeded) return;
-
         _loaded = true;
         _sceneHandle = handle;
         LevelLoaded?.Invoke();

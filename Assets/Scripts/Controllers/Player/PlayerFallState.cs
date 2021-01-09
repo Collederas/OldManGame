@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Components;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerFallState : PlayerBaseState
@@ -40,7 +41,7 @@ public class PlayerFallState : PlayerBaseState
         }
         else
         {
-            GameManager.Instance.CurrentPlayerHealth = 0;
+            player.Die();
         }
     }
 

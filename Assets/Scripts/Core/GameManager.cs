@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Components;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
@@ -11,8 +12,6 @@ public class GameManager : Singleton<GameManager>
         Postgame
     }
     public event Action PlayerSpawned;
-    public event Action<int> UpdateHealthBar;
-
     public event Action<int> LivesUpdated;
     public event Action<int> BoostCounterUpdated; 
     public event Action<GameState, GameState> GameStateChanged;
@@ -23,14 +22,11 @@ public class GameManager : Singleton<GameManager>
 
     public PlayerController player;
     public int playerLives;
-    public int playerHealth = 4;
-
     public int startingLevel = 0;
 
     private int _currentLevelIndex;
     private int _boostsRemaining;
     private PlayerController _playerController;
-    private int _currentPlayerHealth;
 
     private int _currentPlayerLives;
     private GameObject _playerStart;
@@ -45,21 +41,6 @@ public class GameManager : Singleton<GameManager>
         set
         {
             _currentLevelIndex = value;
-        }
-    }
-
-    public int CurrentPlayerHealth
-    {
-        get => _currentPlayerHealth;
-        set
-        {
-            UpdateHealthBar?.Invoke(value);
-
-            _currentPlayerHealth = value;
-            if (_currentPlayerHealth <= 0)
-            {
-                OnPlayerDead();
-            }
         }
     }
     
@@ -94,8 +75,8 @@ public class GameManager : Singleton<GameManager>
         DontDestroyOnLoad(gameObject);
         UpdateState(GameState.Pregame);
         CurrentPlayerLives = playerLives;
-        CurrentPlayerHealth = playerHealth;
-        
+        SceneManager.Instance.LevelLoaded += InitializeLevel;
+
         //##### DEBUG #####
         if(loadLevels)
             LoadLevel(startingLevel);
@@ -111,7 +92,6 @@ public class GameManager : Singleton<GameManager>
         transitionAnimator.SetBool("Start", true);
         CurrentLevelIndex = index;
         SceneManager.Instance.LoadLevel(index);
-        SceneManager.Instance.LevelLoaded += InitializeLevel;
     }
     
     public void LoadNextLevel()
@@ -181,7 +161,6 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator SpawnPlayer(bool delaySpawn = true)
     {
         _playerStart = GameObject.FindGameObjectWithTag("PlayerStart");
-        
         if (!_playerStart)
         {
             Debug.LogWarning("[GameManager] No Player Spawn Point defined. Creating default at (0;0)");
@@ -197,7 +176,7 @@ public class GameManager : Singleton<GameManager>
             var spawnPointPosition = _playerStart.transform.position;
             _playerController = Instantiate(player, new Vector2(spawnPointPosition.x, spawnPointPosition.y),
                 Quaternion.identity);
-            CurrentPlayerHealth = playerHealth;
+            _playerController.GetComponent<DamageComponent>()?.ResetHP();
             PlayerSpawned?.Invoke();
 
             // Cheap way to avoid sending a message internally to this same class. Meh.
@@ -217,7 +196,7 @@ public class GameManager : Singleton<GameManager>
         CurrentLevelIndex = 8;
     }
     
-    private void OnPlayerDead()
+    public void OnPlayerDead()
     {
         CurrentPlayerLives--;
 
