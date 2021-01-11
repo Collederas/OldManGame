@@ -1,14 +1,14 @@
-﻿using System;
+﻿using Components;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(HealthBar))]
 [RequireComponent(typeof(PlayerInput))]
-public class PlayerController : MovingObjectController, IDamageable
+public class PlayerController : MovingObjectController
 {
     private PlayerInput _playerInput;
     public InputAction moveAction;
-    
+
     [Range(0.0f, 5.0f)] public float boostDuration = 1f;
 
     [Range(0.0f, 10.0f)] public float boostDistance = 2f;
@@ -17,10 +17,10 @@ public class PlayerController : MovingObjectController, IDamageable
     public float maxWalkingSpeed = 2f;
     public float fallingSpeed = 2f;
 
-    private int _currentHealth;
     private Vector2 _impulseAcceleration;
-
     private Vector2 _inputAcceleration;
+    private DamageComponent _damageComponent;
+    
     public PlayerBoostState boostState;
     public PlayerBaseState currentState;
     public PlayerFallState fallState;
@@ -32,6 +32,7 @@ public class PlayerController : MovingObjectController, IDamageable
     public void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
+        _damageComponent = GetComponent<DamageComponent>();
         
         /* Instantiated this way to allow more precise
         control over movement via polling. */
@@ -43,7 +44,6 @@ public class PlayerController : MovingObjectController, IDamageable
         fallState = new PlayerFallState(this);
         idleState = new PlayerIdleState(this);
         currentState = walkingState;
-
     }
 
     protected override void Update()
@@ -58,11 +58,6 @@ public class PlayerController : MovingObjectController, IDamageable
         base.FixedUpdate();
     }
 
-    public void TakeDamage(int damageAmount)
-    {
-        GameManager.Instance.CurrentPlayerHealth -= damageAmount;
-    }
-    
     public void DeactivateInput()
     {
         GetComponent<PlayerInput>().DeactivateInput();
@@ -82,15 +77,25 @@ public class PlayerController : MovingObjectController, IDamageable
         newState.Enter();
     }
 
+    public void OnHPBelowZero()
+    {
+        Die();
+    }
+
     public void OnFire()
     {
         currentState.OnFire();
     }
-
+    
     public override void Fall(Vector2 fallTargetPosition)
     {
         if (currentState is PlayerBoostState) return;
         ChangeState(fallState);
         FallTargetPosition = fallTargetPosition;
+    }
+
+    public void Die()
+    {
+        GameManager.Instance.OnPlayerDead();
     }
 }

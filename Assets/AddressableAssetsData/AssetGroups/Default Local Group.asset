@@ -20,63 +20,73 @@ MonoBehaviour:
   - m_GUID: c258d0eea4d9b473a89d70e98b1fae59
     m_Address: Assets/Scenes/Level2.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 2cda990e2423bbf4892e6590ba056729
     m_Address: Assets/Scenes/Level1.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 36882739f39c44c5299fa0ce48693dc7
     m_Address: Assets/Scenes/Persistent Scene.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: 3df4485b19cd64d6892375280eb05cb1
     m_Address: Assets/Scenes/Main Menu.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 102900000, guid: 3df4485b19cd64d6892375280eb05cb1, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 3df4485b19cd64d6892375280eb05cb1, type: 3}
   - m_GUID: 5991db5e1fae649248bc571fe47957cc
     m_Address: Assets/Scenes/Game Over.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 102900000, guid: 5991db5e1fae649248bc571fe47957cc, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 5991db5e1fae649248bc571fe47957cc, type: 3}
   - m_GUID: 5b148ce929bbb4cdc9bf54139d33a2ac
     m_Address: Assets/Scenes/Level3.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 102900000, guid: 5b148ce929bbb4cdc9bf54139d33a2ac, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 5b148ce929bbb4cdc9bf54139d33a2ac, type: 3}
   - m_GUID: 5d56ffb645dd3423f9a91c7364498cf1
     m_Address: Assets/Scenes/Level4.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 102900000, guid: 5d56ffb645dd3423f9a91c7364498cf1, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 5d56ffb645dd3423f9a91c7364498cf1, type: 3}
   - m_GUID: 8af2a9f879f2b4d11aaf0e0805af95cf
     m_Address: Assets/Scenes/Level5.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 102900000, guid: 8af2a9f879f2b4d11aaf0e0805af95cf, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: 8af2a9f879f2b4d11aaf0e0805af95cf, type: 3}
   - m_GUID: d84dbe3f66e074db8b1a648ae657e07d
     m_Address: Assets/Scenes/End.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     m_MainAsset: {fileID: 0}
     m_TargetAsset: {fileID: 0}
   - m_GUID: e50b0f7bb5b604f96b4b25f03a2ff6e5
     m_Address: Assets/Scenes/Intro.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    m_MainAsset: {fileID: 0}
-    m_TargetAsset: {fileID: 0}
+    m_SerializedLabels:
+    - default
+    m_MainAsset: {fileID: 102900000, guid: e50b0f7bb5b604f96b4b25f03a2ff6e5, type: 3}
+    m_TargetAsset: {fileID: 102900000, guid: e50b0f7bb5b604f96b4b25f03a2ff6e5, type: 3}
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: ccd13b6acc0034a1e92065b7fc92c5cc, type: 2}
   m_SchemaSet:

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Components;
+using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
@@ -30,8 +31,9 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        var damageableObject = collision.gameObject.GetComponent<IDamageable>();
-        damageableObject?.TakeDamage(damage);
+        var damageableObject = collision.gameObject.GetComponent<DamageComponent>();
+        if (damageableObject)
+            damageableObject.TakeDamage(damage);
         Destroy(gameObject);
     }
 }

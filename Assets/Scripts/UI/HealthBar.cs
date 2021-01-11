@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-// Thanks Brakeys! --> https://www.youtube.com/watch?v=BLfNP4Sc_iA&ab_channel=Brackeys
-
-[RequireComponent(typeof(Slider))]
-public class HealthBar : MonoBehaviour
+namespace UI
 {
-    private Slider _slider;
-
-    public void OnEnable()
+    [RequireComponent(typeof(Slider))]
+    public class HealthBar : MonoBehaviour
     {
-        _slider = GetComponent<Slider>();
-    }
+        public IntegerVariable healthVariable;
+        private Slider _slider;
 
-    public void SetHealth(int health)
-    {
-        _slider.value = health;
+        public void Start()
+        {
+            _slider = GetComponent<Slider>();
+            healthVariable.ValueChanged += UpdateHealth;
+        }
+    
+        public void UpdateHealth(int value)
+        {
+            _slider.value = value;
+        }
     }
 }
